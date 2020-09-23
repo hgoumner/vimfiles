@@ -76,13 +76,30 @@ set encoding=utf-8
 set tabstop=4 shiftwidth=4 expandtab
 
 "let NERDTreeIgnore=['\~$', '\.o$[[file]]', '\.pyc$[[file]]']
-map  <F4>   :NERDTreeToggle C:\Users\gou\Documents\Lokale_Repositories<cr>
 " nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
-" comment out line in AC2 files
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" comment out lines
 source ~/.vim/additional/vcomments.vim
 map <C-q> :call Comment()<CR>
 map <A-q> :call Uncomment()<CR>
+
+"### F key mappings ###"
+" map myvimrc edit
+map <F1> :e $MYVIMRC<CR>
+map <F2> :NERDTreeToggle C:\Users\gou\Documents\Lokale_Repositories<CR>
+" map split view
+map <F3> <C-w><C-v><CR>
+map <F4> <C-w><C-s><CR>
+" set synchronous scrolling
+map <F5> :windo set invscrollbind<CR>
+" close file without saving
+map <F12> :q!<CR>
 
 "###########################"
 " Search settings
@@ -97,7 +114,7 @@ map * <Plug>(incsearch-forward)
 map - <Plug>(incsearch-backward)                                     
 
 " Set fortran as language for input file
-autocmd BufNewFile,BufRead,BufReadPost *.inp,*.in,*.inp_EXP,*.log set syntax=fortran encoding=utf-8
+autocmd BufNewFile,BufRead,BufReadPost *.inp,*.in,*.inp_EXP,*.log set syntax=fortran_gou encoding=utf-8
 
 "###########################"
 " Syntax settings
