@@ -16,6 +16,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }              " file expl
 Plug 'AndrewRadev/linediff.vim'                                      " fast line diff
 Plug 'haya14busa/incsearch.vim'                                      " incremental search
 Plug 'junegunn/vim-easy-align'                                       " align text according to '=' location
+Plug 'preservim/tagbar'
 "Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-session'
 "Plug 'kien/ctrlp.vim'
@@ -47,6 +48,10 @@ set langmenu=en_US
 let $LANG   ='en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
+
+" open NERDTree on startup
+" autocmd VimEnter * NERDTree
+let NERDTreeShowBookmarks=1
 
 " Set color scheme
 colors gruvbox
@@ -99,7 +104,10 @@ map <F4> <C-w><C-s><CR>
 " set synchronous scrolling
 map <F5> :windo set invscrollbind<CR>
 " close file without saving
+nnoremap <F6> :set hlsearch!<CR>
 map <F12> :q!<CR>
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_ctags_bin = 'C:\Users\gou\vimfiles\additional\ctags58\ctags.exe'
 
 "###########################"
 " Search settings
@@ -119,8 +127,21 @@ autocmd BufNewFile,BufRead,BufReadPost *.inp,*.in,*.inp_EXP,*.log set syntax=for
 "###########################"
 " Syntax settings
 
-" ############# FORTRAN / AC" ############# 
+" ############# FORTRAN / AC2" ############# 
 " au BufWritePre *.f90,*.fpp,*.inp,*.in,*.inp_EXP,*.log :%s/\s\+$//e   " replace spaces with plus until end of line
 " au BufRead *.f90,*.fpp,*.inp,*.in,*.inp_EXP,*.log :%s/\t/    /g      " replace tabs with 4 spaces when OPENING fortran/AC2 file
 " au BufWritePre *.f90,*.fpp,*.inp,*.in,*.inp_EXP,*.log :%s/\t/    /g  " replace tabs with 4 spaces and SAVE fortran/AC2 file
+
+" create tags for AC2
+let g:tagbar_ac2ctags_bin='C:\Users\gou\vimfiles\_ctags'
+let g:tagbar_type_ac2 = {
+    \ 'ctagstype' : 'ac2',
+    \ 'ctagsbin'  : tagbar_ac2ctags_bin,
+    \ 'kinds' : [
+        \ 'c:controlwords',
+        \ 'k:keywords',
+        \ 's:subkeywords',
+        \ ],
+        \ 'sort' : 0
+    \ }
 
