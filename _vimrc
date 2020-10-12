@@ -17,6 +17,8 @@ Plug 'AndrewRadev/linediff.vim'                                      " fast line
 Plug 'haya14busa/incsearch.vim'                                      " incremental search
 Plug 'junegunn/vim-easy-align'                                       " align text according to '=' location
 Plug 'preservim/tagbar'
+"Plug 'yegappan/taglist'                                              " enhanced status bar
+Plug 'vim-airline/vim-airline'
 "Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-session'
 "Plug 'kien/ctrlp.vim'
@@ -26,7 +28,6 @@ Plug 'preservim/tagbar'
 "Plug 'vim-syntastic/syntastic'
 "Plug 'flazz/vim-colorschemes'
 "Plug 'sjl/gundo.vim'
-"Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 "Plug 'vim-scripts/view_diff'
 "Plug 'shougo/deol.nvim'
@@ -64,6 +65,12 @@ set clipboard=unnamed                                                " < copy/pa
 set swapfile
 set dir=~/tmp                                                        " store swapfiles in tmp directory
 
+" tag directory
+:set tags=$HOME/vimfiles
+
+" set working directory to open file directory
+autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
+
 "###########################"
 " Editor settings
 
@@ -80,6 +87,9 @@ set encoding=utf-8
 " replace tab with 4 spaces
 set tabstop=4 shiftwidth=4 expandtab
 
+" allow writing anywhere in buffer
+set virtualedit=all
+
 "let NERDTreeIgnore=['\~$', '\.o$[[file]]', '\.pyc$[[file]]']
 " nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
@@ -94,6 +104,10 @@ source ~/.vim/additional/vcomments.vim
 map <C-q> :call Comment()<CR>
 map <A-q> :call Uncomment()<CR>
 
+" replace comma with dot or dot with comma
+noremap <C-d><C-c> :%s/\./,/g<CR>
+noremap <C-c><C-d> :%s/\,/./g<CR>
+
 "### F key mappings ###"
 " map myvimrc edit
 map <F1> :e $MYVIMRC<CR>
@@ -103,11 +117,32 @@ map <F3> <C-w><C-v><CR>
 map <F4> <C-w><C-s><CR>
 " set synchronous scrolling
 map <F5> :windo set invscrollbind<CR>
-" close file without saving
 nnoremap <F6> :set hlsearch!<CR>
+" close file without saving
 map <F12> :q!<CR>
+
+"### Open new buffer ###
+let mapleader = ","
+nmap <leader>s<left>   :leftabove  vnew<CR>
+nmap <leader>s<right>  :rightbelow vnew<CR>
+nmap <leader>s<up>     :leftabove  new<CR>
+nmap <leader>s<down>   :rightbelow new<CR>
+
+" new line without insert mode
+nnoremap o o<Esc>
+nnoremap O O<Esc>
+
+" save file
+nmap <c-s> :w<CR>
+"vmap <C-s> <Esc><C-s>gv
+imap <c-s> <Esc>:w<CR>a
+" save file as
+nnoremap <C-S> :sav<CR>
+" close file after saving
+map <C-s><C-x> :wq!<CR>
+" Toggle tag bar
 nmap <F8> :TagbarToggle<CR>
-let g:tagbar_ctags_bin = 'C:\Users\gou\vimfiles\additional\ctags58\ctags.exe'
+"nmap <F8> :TlistToggle<CR>
 
 "###########################"
 " Search settings
@@ -117,12 +152,12 @@ set incsearch                                                        " set incre
 set ignorecase                                                       " activate case-insensitive search
 set smartcase
 " map numpad * key to search forward
-map * <Plug>(incsearch-forward)                                      
+"map * <Plug>(incsearch-forward)                                      
 " map numpad - key to search backward
-map - <Plug>(incsearch-backward)                                     
+"map - <Plug>(incsearch-backward)                                     
 
 " Set fortran as language for input file
-autocmd BufNewFile,BufRead,BufReadPost *.inp,*.in,*.inp_EXP,*.log set syntax=fortran_gou encoding=utf-8
+autocmd BufNewFile,BufRead,BufReadPost *.inp,*.in,*.inp_EXP,*.log set syntax=ac2_gou encoding=utf-8
 
 "###########################"
 " Syntax settings
@@ -132,8 +167,12 @@ autocmd BufNewFile,BufRead,BufReadPost *.inp,*.in,*.inp_EXP,*.log set syntax=for
 " au BufRead *.f90,*.fpp,*.inp,*.in,*.inp_EXP,*.log :%s/\t/    /g      " replace tabs with 4 spaces when OPENING fortran/AC2 file
 " au BufWritePre *.f90,*.fpp,*.inp,*.in,*.inp_EXP,*.log :%s/\t/    /g  " replace tabs with 4 spaces and SAVE fortran/AC2 file
 
+" Tags for most languages
+let g:tagbar_ctags_bin = 'C:\Users\gou\vimfiles\additional\ctags58\ctags.exe'
+let g:Tlist_Ctags_Cmd = 'C:\Users\gou\vimfiles\additional\ctags58\ctags.exe'
+
 " create tags for AC2
-let g:tagbar_ac2ctags_bin='C:\Users\gou\vimfiles\_ctags'
+let g:tagbar_ac2ctags_bin='.ctags'
 let g:tagbar_type_ac2 = {
     \ 'ctagstype' : 'ac2',
     \ 'ctagsbin'  : tagbar_ac2ctags_bin,
