@@ -1,0 +1,4 @@
+[submodule "additional/ctags"]
+	url = https://github.com/universal-ctags/ctags.git
+[submodule "vim-plugged/taglist"]
+	url = https://github.com/vim-scripts/taglist.vim.git
