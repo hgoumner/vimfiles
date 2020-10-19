@@ -94,6 +94,9 @@ set dir=~/tmp                                                        " store swa
 " set working directory to open file directory
 autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
+" Open Ggrep results in a quickfix window
+ autocmd QuickFixCmdPost *grep* cwindow
+ 
 " set Vim leader key
 let mapleader = "\<Space>"
 
@@ -164,24 +167,25 @@ nmap <leader>p :Files<CR>
 " - Popup window
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
-" - down / up / left / right
-let g:fzf_layout = { 'down': '40%' }
-
 " - Window using a Vim command
 let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_layout = { 'window': '-tabnew' }
 let g:fzf_layout = { 'window': '10new' }
 
+" - down / up / left / right
+let g:fzf_layout = { 'down': '40%' }
+ 
 "##########################"
 "######### CtrlSF #########"
 "##########################"
  
+let g:ctrlsf_backend = "C:/Users/gou/vimfiles/additional/ripgrep-12.1.1-x86_64-pc-windows-gnu/rg.exe"
+
 nmap <leader>a :CtrlSF -R ""<Left>
 nmap <leader>A <Plug>CtrlSFCwordPath -W<CR>
 nmap <leader>c :CtrlSFFocus<CR>
 nmap <leader>C :CtrlSFToggle<CR>
 
-let g:ctrlsf_backend = "C:/Users/gou/vimfiles/additional/ripgrep-12.1.1-x86_64-pc-windows-gnu/rg.exe"
 
 let g:ctrlsf_winsize = '33%'
 let g:ctrlsf_auto_close = 0
@@ -221,8 +225,6 @@ set smartcase
 " map numpad - key to search backward
 "map - <Plug>(incsearch-backward)                                     
 
-" Open Ggrep results in a quickfix window
- autocmd QuickFixCmdPost *grep* cwindow
 
 
 " Substitute the word under the cursor.
