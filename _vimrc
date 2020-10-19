@@ -160,7 +160,17 @@ nmap <leader>q :q<CR>
 " Find files with fzf
 nmap <leader>p :Files<CR>
 
-let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95 } }
+" Default fzf layout
+" - Popup window
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+" - down / up / left / right
+let g:fzf_layout = { 'down': '40%' }
+
+" - Window using a Vim command
+let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': '-tabnew' }
+let g:fzf_layout = { 'window': '10new' }
 
 "##########################"
 "######### CtrlSF #########"
