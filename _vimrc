@@ -4,10 +4,11 @@
 
 "###########################"
 " Plugin settings
+"###########################"
 
 " set necessary flags for plugin and tool setup
-set nocompatible              " required
-filetype off                  " required
+set nocompatible                                                     " required
+filetype off                                                         " required
 
 " import plugins
 call plug#begin('~/.vim/vim-plugged')
@@ -17,7 +18,6 @@ Plug 'AndrewRadev/linediff.vim'                                      " fast line
 Plug 'haya14busa/incsearch.vim'                                      " incremental search
 Plug 'junegunn/vim-easy-align'                                       " align text according to '=' location
 Plug 'preservim/tagbar'
-"Plug 'yegappan/taglist'                                              " enhanced status bar
 Plug 'vim-airline/vim-airline'
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -31,7 +31,6 @@ Plug 'junegunn/fzf.vim'
 "Plug 'vim-syntastic/syntastic'
 "Plug 'flazz/vim-colorschemes'
 "Plug 'sjl/gundo.vim'
-"Plug 'vim-airline/vim-airline-themes'
 "Plug 'vim-scripts/view_diff'
 "Plug 'shougo/deol.nvim'
 "Plug 'yegappan/grep'
@@ -89,13 +88,13 @@ set swapfile
 set dir=~/tmp                                                        " store swapfiles in tmp directory
 
 " tag directory
-:set tags=$HOME/vimfiles
+set tags=$HOME/vimfiles
 
 " set working directory to open file directory
 autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
 " Open Ggrep results in a quickfix window
- autocmd QuickFixCmdPost *grep* cwindow
+autocmd QuickFixCmdPost *grep* cwindow
  
 " set Vim leader key
 let mapleader = "\<Space>"
@@ -108,60 +107,41 @@ let mapleader = "\<Space>"
 "### F key mappings ###"
 "######################"
 
-" map myvimrc edit
-map <F1> :e $MYVIMRC<CR>
-map <F2> :NERDTreeToggle C:\Users\gou\Documents\Lokale_Repositories<CR>
+" toggle File Explorer
+nnoremap <F1> :NERDTreeToggle C:\Users\gou\Documents\Lokale_Repositories<CR>
 " map split view
-map <F3> <C-w><C-v><CR>
-map <F4> <C-w><C-s><CR>
+" vertical
+nnoremap <F3> <C-w><C-v><CR>        
+" horizontal
+nnoremap <F4> <C-w><C-s><CR>        
 " set synchronous scrolling
-map <F5> :windo set invscrollbind<CR>
+nnoremap <F5> :windo set invscrollbind<CR>
+" toggle search highlighting
 nnoremap <F6> :set hlsearch!<CR>
 " search word under cursor
 nnoremap <F7> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
-" close file without saving
-map <F12> :q!<CR>
+" edit _vimrc file
+nnoremap <F12> :e $MYVIMRC<CR>
 
 "#######################"
 "### Plugin mappings ###"
 "#######################"
 
-"let NERDTreeIgnore=['\~$', '\.o$[[file]]', '\.pyc$[[file]]']
-" nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
-
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+xnoremap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+nnoremap ga <Plug>(EasyAlign)
 
-" select all
-nnoremap <C-A> ggVG
-
-" comment out lines
-source ~/.vim/additional/vcomments.vim
-map <C-q> :call Comment()<CR>
-map <A-q> :call Uncomment()<CR>
-
-" replace comma with dot or dot with comma
-noremap <C-d><C-c> :%s/\./,/g<CR>
-noremap <C-c><C-d> :%s/\,/./g<CR>
- 
-"### Open new buffer ###
-nmap <leader>b<left>   :leftabove  vnew<CR>
-nmap <leader>b<right>  :rightbelow vnew<CR>
-nmap <leader>b<up>     :leftabove  new<CR>
-nmap <leader>b<down>   :rightbelow new<CR>
-
-nmap <leader>w :w<CR>
-nmap <leader>q :q<CR>
+"let NERDTreeIgnore=['\~$', '\.o$[[file]]', '\.pyc$[[file]]']
+" nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 
 "##########################"
 "########## FZF ###########"
 "##########################"
 
 " Find files with fzf
-nmap <leader>p :Files<CR>
+nnoremap <leader>p :Files<CR>
 
 " Default fzf layout
 " - Popup window
@@ -179,14 +159,16 @@ let g:fzf_layout = { 'down': '40%' }
 "######### CtrlSF #########"
 "##########################"
  
+" set rg location
 let g:ctrlsf_backend = "C:/Users/gou/vimfiles/additional/ripgrep-12.1.1-x86_64-pc-windows-gnu/rg.exe"
 
-nmap <leader>a :CtrlSF -R ""<Left>
-nmap <leader>A <Plug>CtrlSFCwordPath -W<CR>
-nmap <leader>c :CtrlSFFocus<CR>
-nmap <leader>C :CtrlSFToggle<CR>
+" search result settings
+nnoremap <leader>a :CtrlSF -R ""<Left>
+nnoremap <leader>A <Plug>CtrlSFCwordPath -W<CR>
+nnoremap <leader>c :CtrlSFFocus<CR>
+nnoremap <leader>C :CtrlSFToggle<CR>
 
-
+" plugin settings
 let g:ctrlsf_winsize = '33%'
 let g:ctrlsf_auto_close = 0
 let g:ctrlsf_confirm_save = 0
@@ -195,22 +177,45 @@ let g:ctrlsf_auto_focus = {
     \ }
 
 "##########################"
-"
+"####### Personal #########"
+"##########################"
+
+" select all
+nnoremap <C-a> ggVG
+
+" comment out lines
+source $HOME/vimfiles/additional/vcomments.vim
+nnoremap <C-q> :call Comment()<CR>
+nnoremap <A-q> :call Uncomment()<CR>
+
+" replace comma with dot or dot with comma
+noremap <C-d><C-c> :%s/\./,/g<CR>
+noremap <C-c><C-d> :%s/\,/./g<CR>
+ 
+"### Open new buffer ###
+nnoremap <leader>b<left>   :leftabove  vnew<CR>
+nnoremap <leader>b<right>  :rightbelow vnew<CR>
+nnoremap <leader>b<up>     :leftabove  new<CR>
+nnoremap <leader>b<down>   :rightbelow new<CR>
+
+" save and close file with leader
+nnoremap <leader>w :w!<CR>
+nnoremap <leader>q :q!<CR>
+  
 " new line without insert mode
 nnoremap o o<Esc>
 nnoremap O O<Esc>
 
 " save file
-nmap <c-s> :w<CR>
+nnoremap <c-s> :w<CR>
 "vmap <C-s> <Esc><C-s>gv
-imap <c-s> <Esc>:w<CR>a
+inoremap <c-s> <Esc>:w<CR>a
 " save file as
 nnoremap <C-S> :sav<CR>
 " close file after saving
-map <C-s><C-x> :wq!<CR>
+noremap <C-s><C-x> :wq!<CR>
 " Toggle tag bar
-nmap <F8> :TagbarToggle<CR>
-"nmap <F8> :TlistToggle<CR>
+nnoremap <F8> :TagbarToggle<CR>
 
 "############################################################################################################"
 " Search settings
@@ -220,15 +225,9 @@ set hlsearch                                                         " highlight
 set incsearch                                                        " set incremental search
 set ignorecase                                                       " activate case-insensitive search
 set smartcase
-" map numpad * key to search forward
-"map * <Plug>(incsearch-forward)                                      
-" map numpad - key to search backward
-"map - <Plug>(incsearch-backward)                                     
-
-
 
 " Substitute the word under the cursor.
-nmap <leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nnoremap <leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Set fortran as language for input file
 autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log set syntax=ac2 encoding=utf-8
@@ -244,7 +243,6 @@ autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log set synt
 
 " Tags for most languages
 let g:tagbar_ctags_bin = 'C:\Users\gou\vimfiles\additional\ctags58\ctags.exe'
-let g:Tlist_Ctags_Cmd = 'C:\Users\gou\vimfiles\additional\ctags58\ctags.exe'
 
 " create tags for AC2
 let g:tagbar_ac2ctags_bin='.ctags'
