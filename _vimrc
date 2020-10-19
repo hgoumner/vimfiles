@@ -1,6 +1,6 @@
-"###########################"
+"############################################################################################################"
 "# Personal vimrc settings #"
-"###########################"
+"############################################################################################################"
 
 "###########################"
 " Plugin settings
@@ -19,6 +19,9 @@ Plug 'junegunn/vim-easy-align'                                       " align tex
 Plug 'preservim/tagbar'
 "Plug 'yegappan/taglist'                                              " enhanced status bar
 Plug 'vim-airline/vim-airline'
+Plug 'dyng/ctrlsf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 "Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-session'
 "Plug 'kien/ctrlp.vim'
@@ -41,8 +44,9 @@ augroup myvimrc
     au BufWritePost .vimrc,_vimrc,vimrc so $MYVIMRC
 augroup END
 
-"###########################"
+"############################################################################################################"
 " Vim settings
+"############################################################################################################"
 
 " Set language to english
 set langmenu=en_US
@@ -60,23 +64,9 @@ colors gruvbox
 " Set font
 set guifont=Consolas:h12
 
-" clipboard and swapfile settings
-set clipboard=unnamed                                                " < copy/paste to register * (system's copy/paste buffer)
-set swapfile
-set dir=~/tmp                                                        " store swapfiles in tmp directory
-
-" tag directory
-:set tags=$HOME/vimfiles
-
-" set working directory to open file directory
-autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
-
-"###########################"
-" Editor settings
-
 " Show line and column numbers
-:set number
-:set ruler
+set number
+set ruler
 
 " Turn on syntax highlighting
 syntax on
@@ -90,25 +80,31 @@ set tabstop=4 shiftwidth=4 expandtab
 " allow writing anywhere in buffer
 set virtualedit=all
 
-"let NERDTreeIgnore=['\~$', '\.o$[[file]]', '\.pyc$[[file]]']
-" nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+" activate backspace key
+set backspace=2
+ 
+" clipboard and swapfile settings
+set clipboard=unnamed                                                " < copy/paste to register * (system's copy/paste buffer)
+set swapfile
+set dir=~/tmp                                                        " store swapfiles in tmp directory
 
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+" tag directory
+:set tags=$HOME/vimfiles
 
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+" set working directory to open file directory
+autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
-" comment out lines
-source ~/.vim/additional/vcomments.vim
-map <C-q> :call Comment()<CR>
-map <A-q> :call Uncomment()<CR>
+" set Vim leader key
+let mapleader = "\<Space>"
 
-" replace comma with dot or dot with comma
-noremap <C-d><C-c> :%s/\./,/g<CR>
-noremap <C-c><C-d> :%s/\,/./g<CR>
+"############################################################################################################"
+" Editor settings
+"############################################################################################################"
 
+"######################"
 "### F key mappings ###"
+"######################"
+
 " map myvimrc edit
 map <F1> :e $MYVIMRC<CR>
 map <F2> :NERDTreeToggle C:\Users\gou\Documents\Lokale_Repositories<CR>
@@ -118,16 +114,74 @@ map <F4> <C-w><C-s><CR>
 " set synchronous scrolling
 map <F5> :windo set invscrollbind<CR>
 nnoremap <F6> :set hlsearch!<CR>
+" search word under cursor
+nnoremap <F7> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
 " close file without saving
 map <F12> :q!<CR>
 
-"### Open new buffer ###
-let mapleader = ","
-nmap <leader>s<left>   :leftabove  vnew<CR>
-nmap <leader>s<right>  :rightbelow vnew<CR>
-nmap <leader>s<up>     :leftabove  new<CR>
-nmap <leader>s<down>   :rightbelow new<CR>
+"#######################"
+"### Plugin mappings ###"
+"#######################"
 
+"let NERDTreeIgnore=['\~$', '\.o$[[file]]', '\.pyc$[[file]]']
+" nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" select all
+nnoremap <C-A> ggVG
+
+" comment out lines
+source ~/.vim/additional/vcomments.vim
+map <C-q> :call Comment()<CR>
+map <A-q> :call Uncomment()<CR>
+
+" replace comma with dot or dot with comma
+noremap <C-d><C-c> :%s/\./,/g<CR>
+noremap <C-c><C-d> :%s/\,/./g<CR>
+ 
+"### Open new buffer ###
+nmap <leader>b<left>   :leftabove  vnew<CR>
+nmap <leader>b<right>  :rightbelow vnew<CR>
+nmap <leader>b<up>     :leftabove  new<CR>
+nmap <leader>b<down>   :rightbelow new<CR>
+
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+
+"##########################"
+"########## FZF ###########"
+"##########################"
+
+" Find files with fzf
+nmap <leader>p :Files<CR>
+
+let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95 } }
+
+"##########################"
+"######### CtrlSF #########"
+"##########################"
+ 
+nmap <leader>a :CtrlSF -R ""<Left>
+nmap <leader>A <Plug>CtrlSFCwordPath -W<CR>
+nmap <leader>c :CtrlSFFocus<CR>
+nmap <leader>C :CtrlSFToggle<CR>
+
+let g:ctrlsf_backend = "C:/Users/gou/vimfiles/additional/ripgrep-12.1.1-x86_64-pc-windows-gnu/rg.exe"
+
+let g:ctrlsf_winsize = '33%'
+let g:ctrlsf_auto_close = 0
+let g:ctrlsf_confirm_save = 0
+let g:ctrlsf_auto_focus = {
+    \ 'at': 'start',
+    \ }
+
+"##########################"
+"
 " new line without insert mode
 nnoremap o o<Esc>
 nnoremap O O<Esc>
@@ -144,8 +198,9 @@ map <C-s><C-x> :wq!<CR>
 nmap <F8> :TagbarToggle<CR>
 "nmap <F8> :TlistToggle<CR>
 
-"###########################"
+"############################################################################################################"
 " Search settings
+"############################################################################################################"
 
 set hlsearch                                                         " highlight search pattern
 set incsearch                                                        " set incremental search
@@ -156,11 +211,19 @@ set smartcase
 " map numpad - key to search backward
 "map - <Plug>(incsearch-backward)                                     
 
-" Set fortran as language for input file
-autocmd BufNewFile,BufRead,BufReadPost *.inp,*.in,*.inp_EXP,*.log set syntax=ac2_gou encoding=utf-8
+" Open Ggrep results in a quickfix window
+ autocmd QuickFixCmdPost *grep* cwindow
 
-"###########################"
+
+" Substitute the word under the cursor.
+nmap <leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+
+" Set fortran as language for input file
+autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log set syntax=ac2 encoding=utf-8
+
+"############################################################################################################"
 " Syntax settings
+"############################################################################################################"
 
 " ############# FORTRAN / AC2" ############# 
 " au BufWritePre *.f90,*.fpp,*.inp,*.in,*.inp_EXP,*.log :%s/\s\+$//e   " replace spaces with plus until end of line
@@ -178,8 +241,6 @@ let g:tagbar_type_ac2 = {
     \ 'ctagsbin'  : tagbar_ac2ctags_bin,
     \ 'kinds' : [
         \ 'c:controlwords',
-        \ 'k:keywords',
-        \ 's:subkeywords',
         \ ],
         \ 'sort' : 0
     \ }
