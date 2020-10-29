@@ -141,7 +141,7 @@ nnoremap ga <Plug>(EasyAlign)
 "##########################"
 
 " Find files with fzf
-nnoremap <leader>p :Files<CR>
+nnoremap <leader>p :Files C:\Users\gou<CR>
 
 " Default fzf layout
 " - Popup window
@@ -164,9 +164,9 @@ let g:ctrlsf_backend = "C:/Users/gou/vimfiles/additional/ripgrep-12.1.1-x86_64-p
 
 " search result settings
 nnoremap <leader>a :CtrlSF -R ""<Left>
-nnoremap <leader>A <Plug>CtrlSFCwordPath -W<CR>
-nnoremap <leader>c :CtrlSFFocus<CR>
-nnoremap <leader>C :CtrlSFToggle<CR>
+"nnoremap <leader>A <Plug>CtrlSFCwordPath -W<CR>
+"nnoremap <leader>c :CtrlSFFocus<CR>
+"nnoremap <leader>C :CtrlSFToggle<CR>
 
 " plugin settings
 let g:ctrlsf_winsize = '33%'
@@ -182,6 +182,9 @@ let g:ctrlsf_auto_focus = {
 
 " select all
 nnoremap <C-a> ggVG
+
+" word completion with tab
+inoremap <Tab> <C-n>
 
 " comment out lines
 source $HOME/vimfiles/additional/vcomments.vim
@@ -201,7 +204,13 @@ nnoremap <leader>b<down>   :rightbelow new<CR>
 " save and close file with leader
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>q :q!<CR>
-  
+
+" open new file with leader
+nnoremap <leader>n :browse confirm e<CR>
+
+" diff of currently opened buffers
+nnoremap <leader>d :windo diffthis<CR>
+
 " new line without insert mode
 nnoremap o o<Esc>
 nnoremap O O<Esc>
@@ -217,6 +226,8 @@ noremap <C-s><C-x> :wq!<CR>
 " Toggle tag bar
 nnoremap <F8> :TagbarToggle<CR>
 
+" Toggle Quickfix window
+"nnoremap <leader>f :QFix<CR>
 "############################################################################################################"
 " Search settings
 "############################################################################################################"
@@ -230,7 +241,7 @@ set smartcase
 nnoremap <leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Set fortran as language for input file
-autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log set syntax=ac2 encoding=utf-8
+autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set syntax=ac2 encoding=utf-8
 
 "############################################################################################################"
 " Syntax settings
