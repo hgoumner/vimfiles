@@ -22,6 +22,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-startify'
 "Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-session'
 "Plug 'kien/ctrlp.vim'
@@ -140,8 +141,24 @@ nnoremap ga <Plug>(EasyAlign)
 "########## FZF ###########"
 "##########################"
 
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob'
+
+if has('win32')
+  " Disable preview on Windows since it doesn't really work
+  let g:fzf_preview_window = ''
+else
+  command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+endif
+
 " Find files with fzf
-nnoremap <leader>p :Files C:\Users\gou<CR>
+nnoremap <leader>p :Files $HOME<CR>
+
+" search in file
+nnoremap // :BLines!<CR>
+nnoremap ?? :Rg!<CR>
+
+let g:fzf_commands_expect = 'enter'
 
 " Default fzf layout
 " - Popup window
@@ -160,7 +177,7 @@ let g:fzf_layout = { 'down': '40%' }
 "##########################"
  
 " set rg location
-let g:ctrlsf_backend = "C:/Users/gou/vimfiles/additional/ripgrep-12.1.1-x86_64-pc-windows-gnu/rg.exe"
+"let g:ctrlsf_backend = "C:/Users/gou/vimfiles/additional/ripgrep-12.1.1-x86_64-pc-windows-gnu/rg.exe"
 
 " search result settings
 nnoremap <leader>a :CtrlSF -R ""<Left>
