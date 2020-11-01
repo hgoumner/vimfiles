@@ -141,7 +141,7 @@ nnoremap ga <Plug>(EasyAlign)
 "########## FZF ###########"
 "##########################"
 
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob'
+"let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob'
 
 if has('win32')
   " Disable preview on Windows since it doesn't really work
