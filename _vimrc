@@ -62,7 +62,7 @@ let NERDTreeShowBookmarks=1
 colors gruvbox
 
 " Set font
-set guifont=Consolas:h12
+set guifont=Cousine:h11
 
 " Show line and column numbers
 set number
@@ -217,6 +217,7 @@ nnoremap <leader>b<left>   :leftabove  vnew<CR>
 nnoremap <leader>b<right>  :rightbelow vnew<CR>
 nnoremap <leader>b<up>     :leftabove  new<CR>
 nnoremap <leader>b<down>   :rightbelow new<CR>
+nnoremap <leader>0         <C-w>=<CR>
 
 " save and close file with leader
 nnoremap <leader>w :w!<CR>
