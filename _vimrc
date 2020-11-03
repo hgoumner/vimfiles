@@ -23,6 +23,7 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
+Plug 'terryma/vim-multiple-cursors'
 "Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-session'
 "Plug 'kien/ctrlp.vim'
@@ -155,8 +156,11 @@ endif
 nnoremap <leader>p :Files $HOME<CR>
 
 " search in file
-nnoremap // :BLines!<CR>
+nnoremap -- :BLines!<CR>
 nnoremap ?? :Rg!<CR>
+
+" show history
+nnoremap <leader>h :History<CR>
 
 let g:fzf_commands_expect = 'enter'
 
