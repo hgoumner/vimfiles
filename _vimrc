@@ -180,9 +180,6 @@ let g:fzf_layout = { 'down': '40%' }
 "######### CtrlSF #########"
 "##########################"
  
-" set rg location
-"let g:ctrlsf_backend = "C:/Users/gou/vimfiles/additional/ripgrep-12.1.1-x86_64-pc-windows-gnu/rg.exe"
-
 " search result settings
 nnoremap <leader>a :CtrlSF -R ""<Left>
 "nnoremap <leader>A <Plug>CtrlSFCwordPath -W<CR>
@@ -209,12 +206,12 @@ inoremap <Tab> <C-n>
 
 " comment out lines
 source $HOME/vimfiles/additional/vcomments.vim
-nnoremap <C-q> :call Comment()<CR>
-nnoremap <A-q> :call Uncomment()<CR>
+xnoremap <C-q> :call Comment()<CR>
+xnoremap <A-q> :call Uncomment()<CR>
 
 " replace comma with dot or dot with comma
-noremap <C-d><C-c> :%s/\./,/g<CR>
-noremap <C-c><C-d> :%s/\,/./g<CR>
+noremap <leader>dc :%s/\./,/g<CR>
+noremap <leader>cd :%s/\,/./g<CR>
  
 "### Open new buffer ###
 nnoremap <leader>b<left>   :leftabove  vnew<CR>
@@ -237,14 +234,6 @@ nnoremap <leader>d :windo diffthis<CR>
 nnoremap o o<Esc>
 nnoremap O O<Esc>
 
-" save file
-nnoremap <c-s> :w<CR>
-"vmap <C-s> <Esc><C-s>gv
-inoremap <c-s> <Esc>:w<CR>a
-" save file as
-nnoremap <C-S> :sav<CR>
-" close file after saving
-noremap <C-s><C-x> :wq!<CR>
 " Toggle tag bar
 nnoremap <F8> :TagbarToggle<CR>
 
@@ -264,6 +253,9 @@ nnoremap <leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Set fortran as language for input file
 autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set syntax=ac2 encoding=utf-8
+
+" Set Python as language for Veusz file
+autocmd BufNewFile,BufRead,BufReadPost *.vsz,*.vst set syntax=python encoding=utf-8
 
 "############################################################################################################"
 " Syntax settings
