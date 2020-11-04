@@ -153,7 +153,7 @@ else
 endif
 
 " Find files with fzf
-nnoremap <leader>p :Files $HOME<CR>
+nnoremap <leader>p :Files C:<CR>
 
 " search in file
 nnoremap -- :BLines!<CR>
