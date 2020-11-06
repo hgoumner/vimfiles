@@ -30,3 +30,22 @@ let b:current_syntax = "ac2"
 let &cpoptions = s:cpo_save
 unlet s:cpo_save
 
+"" fold control words
+"syn region vimFoldControl
+"      \ start="^C----.*$"
+"      \ end="^C----"
+"      \ transparent fold
+"      \ keepend extend
+"
+"" fold key words
+"syn region vimFoldKey
+"      \ start="^K----.*$"
+"      \ end="^K----"
+"      \ transparent fold
+"      \ keepend extend
+" 
+"syn sync fromstart
+"set foldmethod=syntax
+"set foldlevelstart=200
+"set foldcolumn=0
+"

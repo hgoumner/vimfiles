@@ -123,6 +123,11 @@ nnoremap <F5> :windo set invscrollbind<CR>
 nnoremap <F6> :set hlsearch!<CR>
 " search word under cursor
 nnoremap <F7> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
+" toggle code folding
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf"
 " edit _vimrc file
 nnoremap <F12> :e $MYVIMRC<CR>
 
