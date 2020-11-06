@@ -65,6 +65,7 @@ set guifont=Cousine:h11
 " Show line and column numbers
 set number
 set ruler
+set cursorline
 
 " Turn on syntax highlighting
 syntax on
