@@ -31,11 +31,8 @@ Plug 'terryma/vim-multiple-cursors'
 "Plug 'tpope/vim-fugitive'
 "Plug 'Lokaltog/vim-easymotion'
 "Plug 'vim-syntastic/syntastic'
-"Plug 'flazz/vim-colorschemes'
 "Plug 'sjl/gundo.vim'
 "Plug 'vim-scripts/view_diff'
-"Plug 'shougo/deol.nvim'
-"Plug 'yegappan/grep'
 
 call plug#end()
 
@@ -89,6 +86,9 @@ set clipboard=unnamed                                                " < copy/pa
 set swapfile
 set dir=~/tmp                                                        " store swapfiles in tmp directory
 
+" clear and limit viminfo entries
+set viminfo='10,<10,s10
+
 " tag directory
 set tags=$HOME/vimfiles
 
@@ -130,10 +130,10 @@ nnoremap <F12> :e $MYVIMRC<CR>
 "#######################"
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xnoremap ga <Plug>(EasyAlign)
+"xnoremap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nnoremap ga <Plug>(EasyAlign)
+"nnoremap ga <Plug>(EasyAlign)
 
 "let NERDTreeIgnore=['\~$', '\.o$[[file]]', '\.pyc$[[file]]']
 " nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
@@ -181,8 +181,8 @@ let g:fzf_layout = { 'down': '40%' }
 "##########################"
  
 " search result settings
-nnoremap <leader>a :CtrlSF -R ""<Left>
-"nnoremap <leader>A <Plug>CtrlSFCwordPath -W<CR>
+nnoremap <leader>a :CtrlSF -R -I ""<Left>
+nnoremap <leader>c <Plug>CtrlSFCwordPath -W<CR>
 "nnoremap <leader>c :CtrlSFFocus<CR>
 "nnoremap <leader>C :CtrlSFToggle<CR>
 
@@ -201,8 +201,31 @@ let g:ctrlsf_auto_focus = {
 " select all
 nnoremap <C-a> ggVG
 
+" remove leading and trailing whitespaces
+nnoremap <leader>, :%s:^\h*#.*::<CR>
+
+" remove empty lines
+nnoremap <leader>. :g:^\h*$:d<CR>
+
+" copy selection
+vnoremap <C-c> "+y
+
+" paste selection (from clipboard)
+inoremap <C-v> <C-r>+
+
+" fix indentation of complete file
+nnoremap <C-i> gg=G<CR>
+
 " word completion with tab
 inoremap <Tab> <C-n>
+
+" auto-close
+inoremap ' ''<left>
+inoremap " ""<left>
+inoremap ( ()<left>
+inoremap % %%<left>
+inoremap [ []<left>
+inoremap { {}<left>
 
 " comment out lines
 source $HOME/vimfiles/additional/vcomments.vim
@@ -222,10 +245,14 @@ nnoremap <leader>0         <C-w>=<CR>
 
 " save and close file with leader
 nnoremap <leader>w :w!<CR>
+nnoremap <leader>e :browse confirm saveas<CR>
 nnoremap <leader>q :q!<CR>
 
 " open new file with leader
-nnoremap <leader>n :browse confirm e<CR>
+nnoremap <leader>o :browse confirm e<CR>
+
+" create new file with leader
+nnoremap <leader>n :enew<CR>
 
 " diff of currently opened buffers
 nnoremap <leader>d :windo diffthis<CR>
@@ -249,7 +276,7 @@ set ignorecase                                                       " activate 
 set smartcase
 
 " Substitute the word under the cursor.
-nnoremap <leader>ss :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nnoremap <leader>rs :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Set fortran as language for input file
 autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set syntax=ac2 encoding=utf-8
