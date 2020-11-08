@@ -281,6 +281,10 @@ set incsearch                                                        " set incre
 set ignorecase                                                       " activate case-insensitive search
 set smartcase
 
+" highlight word under cursor with double click
+set mouse=a     "Enables mouse click
+nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr>:set hls<cr>
+
 " Substitute the word under the cursor.
 nnoremap <leader>rs :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
