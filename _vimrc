@@ -62,10 +62,11 @@ colors gruvbox
 " Set font
 set guifont=Cousine:h11
 
-" Show line and column numbers
+" Show line and column numbers, line endings
 set number
 set ruler
 set cursorline
+set list
 
 " Turn on syntax highlighting
 syntax on
@@ -112,6 +113,8 @@ let mapleader = "\<Space>"
 
 " toggle File Explorer
 nnoremap <F1> :NERDTreeToggle C:\Users\gou\Documents\Lokale_Repositories<CR>
+" toggle wrap
+nnoremap <silent><expr> <f2> ':set wrap! go'.'-+'[&wrap]."=b\r"
 " map split view
 " vertical
 nnoremap <F3> <C-w><C-v><CR>        
@@ -119,8 +122,6 @@ nnoremap <F3> <C-w><C-v><CR>
 nnoremap <F4> <C-w><C-s><CR>        
 " set synchronous scrolling
 nnoremap <F5> :windo set invscrollbind<CR>
-" toggle search highlighting
-nnoremap <F6> :set hlsearch!<CR>
 " search word under cursor
 nnoremap <F7> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
 " toggle code folding
@@ -207,11 +208,14 @@ let g:ctrlsf_auto_focus = {
 " select all
 nnoremap <C-a> ggVG
 
-" remove leading and trailing whitespaces
-nnoremap <leader>, :%s:^\h*#.*::<CR>
+" remove trailing whitespaces
+nnoremap <leader>, :%s/\s*$//<CR>
 
 " remove empty lines
 nnoremap <leader>. :g:^\h*$:d<CR>
+
+" toggle search highlighting
+nnoremap <C-k0> :set hlsearch!<CR>
 
 " copy selection
 vnoremap <C-c> "+y
@@ -249,6 +253,11 @@ nnoremap <leader>b<up>     :leftabove  new<CR>
 nnoremap <leader>b<down>   :rightbelow new<CR>
 nnoremap <leader>0         <C-w>=<CR>
 
+" toggle through buffers
+nnoremap <k1> :bp<CR>
+nnoremap <k0> :buffers<CR>:buffer<Space>
+nnoremap <k3> :bn<CR>
+
 " save and close file with leader
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>e :browse confirm saveas<CR>
@@ -262,6 +271,7 @@ nnoremap <leader>n :enew<CR>
 
 " diff of currently opened buffers
 nnoremap <leader>d :windo diffthis<CR>
+nnoremap <leader>f :windo diffoff<CR>
 
 " new line without insert mode
 nnoremap o o<Esc>
@@ -276,7 +286,7 @@ nnoremap <F8> :TagbarToggle<CR>
 " Search settings
 "############################################################################################################"
 
-set hlsearch                                                         " highlight search pattern
+"set hlsearch                                                         " highlight search pattern
 set incsearch                                                        " set incremental search
 set ignorecase                                                       " activate case-insensitive search
 set smartcase
@@ -286,7 +296,7 @@ set mouse=a     "Enables mouse click
 nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr>:set hls<cr>
 
 " Substitute the word under the cursor.
-nnoremap <leader>rs :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nnoremap <leader>r :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Set fortran as language for input file
 autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set syntax=ac2 encoding=utf-8
