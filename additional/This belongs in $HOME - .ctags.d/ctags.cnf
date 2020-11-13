@@ -2,5 +2,4 @@
 
 --langdef=ac2
 --langmap=ac2:.inp
---regex-ac2=/^C----/\1/c/
-
+--regex-ac2=/^C---- (.*)/\1/c,controlword/

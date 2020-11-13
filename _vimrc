@@ -46,6 +46,9 @@ augroup END
 " Vim settings
 "############################################################################################################"
 
+let $HOMEDRIVE='C:'
+let $HOMEPATH='Users/gou/vimfiles/'
+
 " Set language to english
 set langmenu=en_US
 let $LANG   ='en_US'
@@ -82,11 +85,11 @@ set virtualedit=all
 
 " activate backspace key
 set backspace=2
- 
+
 " clipboard and swapfile settings
-set clipboard=unnamed                                                " < copy/paste to register * (system's copy/paste buffer)
+set clipboard=unnamed                          " < copy/paste to register * (system's copy/paste buffer)
 set swapfile
-set dir=~/tmp                                                        " store swapfiles in tmp directory
+set dir=~/tmp                                  " store swapfiles in tmp directory
 
 " clear and limit viminfo entries
 set viminfo='10,<10,s10
@@ -99,7 +102,7 @@ autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
 " Open Ggrep results in a quickfix window
 autocmd QuickFixCmdPost *grep* cwindow
- 
+
 " set Vim leader key
 let mapleader = "\<Space>"
 
@@ -117,9 +120,9 @@ nnoremap <F1> :NERDTreeToggle C:\Users\gou\Documents\Lokale_Repositories<CR>
 nnoremap <silent><expr> <f2> ':set wrap! go'.'-+'[&wrap]."=b\r"
 " map split view
 " vertical
-nnoremap <F3> <C-w><C-v><CR>        
+nnoremap <F3> <C-w><C-v><CR>
 " horizontal
-nnoremap <F4> <C-w><C-s><CR>        
+nnoremap <F4> <C-w><C-s><CR>
 " set synchronous scrolling
 nnoremap <F5> :windo set invscrollbind<CR>
 " search word under cursor
@@ -182,11 +185,11 @@ let g:fzf_layout = { 'window': '10new' }
 
 " - down / up / left / right
 let g:fzf_layout = { 'down': '40%' }
- 
+
 "##########################"
 "######### CtrlSF #########"
 "##########################"
- 
+
 " search result settings
 nnoremap <leader>a :CtrlSF -R -I ""<Left>
 nnoremap <leader>c <Plug>CtrlSFCwordPath -W<CR>
@@ -245,7 +248,7 @@ xnoremap <A-q> :call Uncomment()<CR>
 " replace comma with dot or dot with comma
 noremap <leader>dc :%s/\./,/g<CR>
 noremap <leader>cd :%s/\,/./g<CR>
- 
+
 "### Open new buffer ###
 nnoremap <leader>b<left>   :leftabove  vnew<CR>
 nnoremap <leader>b<right>  :rightbelow vnew<CR>
@@ -299,7 +302,7 @@ nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\
 nnoremap <leader>r :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Set fortran as language for input file
-autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set syntax=ac2 encoding=utf-8
+autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set syntax=ac2 encoding=utf-8 filetype=ac2
 
 " Set Python as language for Veusz file
 autocmd BufNewFile,BufRead,BufReadPost *.vsz,*.vst set syntax=python encoding=utf-8
@@ -308,21 +311,16 @@ autocmd BufNewFile,BufRead,BufReadPost *.vsz,*.vst set syntax=python encoding=ut
 " Syntax settings
 "############################################################################################################"
 
-" ############# FORTRAN / AC2" ############# 
-" au BufWritePre *.f90,*.fpp,*.inp,*.in,*.inp_EXP,*.log :%s/\s\+$//e   " replace spaces with plus until end of line
-" au BufRead *.f90,*.fpp,*.inp,*.in,*.inp_EXP,*.log :%s/\t/    /g      " replace tabs with 4 spaces when OPENING fortran/AC2 file
-" au BufWritePre *.f90,*.fpp,*.inp,*.in,*.inp_EXP,*.log :%s/\t/    /g  " replace tabs with 4 spaces and SAVE fortran/AC2 file
-
-" Tags for most languages
-let g:tagbar_ctags_bin = 'C:\Users\gou\vimfiles\additional\ctags58\ctags.exe'
+" ############# FORTRAN / AC2" #############
+" au BufWritePre *.f90,*.fpp :%s/\s\+$//e   " replace spaces with plus until end of line
+" au BufRead *.f90,*.fpp :%s/\t/    /g      " replace tabs with 4 spaces when OPENING fortran/AC2 file
+" au BufWritePre *.f90,*.fpp :%s/\t/    /g  " replace tabs with 4 spaces and SAVE fortran/AC2 file
 
 " create tags for AC2
-let g:tagbar_ac2ctags_bin='.ctags'
 let g:tagbar_type_ac2 = {
     \ 'ctagstype' : 'ac2',
-    \ 'ctagsbin'  : tagbar_ac2ctags_bin,
     \ 'kinds' : [
-        \ 'c:controlwords',
+        \ 'c:Control Words'
         \ ],
         \ 'sort' : 0
     \ }

@@ -1,0 +1,5 @@
+# Basic options
+
+--langdef=ac2
+--langmap=ac2:.iix.inp.in.inp_EXP.log.dat
+--regex-ac2=/^C---- (.*)/\1/c,controlword/
