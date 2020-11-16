@@ -46,9 +46,6 @@ augroup END
 " Vim settings
 "############################################################################################################"
 
-let $HOMEDRIVE='C:'
-let $HOMEPATH='Users/gou/vimfiles/'
-
 " Set language to english
 set langmenu=en_US
 let $LANG   ='en_US'
@@ -61,6 +58,7 @@ let NERDTreeShowBookmarks=1
 
 " Set color scheme
 colors gruvbox
+set bg=dark
 
 " Set font
 set guifont=Cousine:h11
@@ -115,7 +113,7 @@ let mapleader = "\<Space>"
 "######################"
 
 " toggle File Explorer
-nnoremap <F1> :NERDTreeToggle C:\Users\gou\Documents\Lokale_Repositories<CR>
+nnoremap <F1> :NERDTreeToggle<CR>
 " toggle wrap
 nnoremap <silent><expr> <f2> ':set wrap! go'.'-+'[&wrap]."=b\r"
 " map split view
