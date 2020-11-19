@@ -23,16 +23,7 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
-Plug 'terryma/vim-multiple-cursors'
-"Plug 'xolox/vim-misc'
-"Plug 'xolox/vim-session'
-"Plug 'kien/ctrlp.vim'
-"Plug 'tomtom/tcomment_vim'
-"Plug 'tpope/vim-fugitive'
-"Plug 'Lokaltog/vim-easymotion'
-"Plug 'vim-syntastic/syntastic'
-"Plug 'sjl/gundo.vim'
-"Plug 'vim-scripts/view_diff'
+"Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 
@@ -116,6 +107,8 @@ let mapleader = "\<Space>"
 nnoremap <F1> :NERDTreeToggle<CR>
 " toggle wrap
 nnoremap <silent><expr> <f2> ':set wrap! go'.'-+'[&wrap]."=b\r"
+" toggle column highlight
+nnoremap <F6> :set cursorcolumn!<CR>
 " map split view
 " vertical
 nnoremap <F3> <C-w><C-v><CR>
@@ -203,11 +196,45 @@ let g:ctrlsf_auto_focus = {
     \ }
 
 "##########################"
+"######### Tagbar #########"
+"##########################"
+
+" show line number of tags
+let g:tagbar_show_tag_linenumbers = 1
+
+" jump tags backward and forward
+nnoremap <silent> <k7> :TagbarOpen fj<CR><C-p>
+nnoremap <silent> <k9> :TagbarOpen fj<CR><C-n>
+nnoremap <silent> <k8> :TagbarClose<CR>
+
+" create tags for AC2
+let g:tagbar_type_ac2 = {
+    \ 'ctagstype' : 'ac2',
+    \ 'kinds' : [
+        \ 'c:Control Words'
+        \ ],
+        \ 'sort' : 0
+    \ }
+
+let g:tagbar_type_ac2_out = {
+    \ 'ctagstype' : 'ac2_out',
+    \ 'kinds' : [
+        \ 'm:Main Edits'
+        \ ],
+        \ 'sort' : 1
+    \ }  
+"        \ 'p:Parameters',
+"        \ 'r:ATHLET Run Summary'
+
+"##########################"
 "####### Personal #########"
 "##########################"
 
 " select all
 nnoremap <C-a> ggVG
+
+" select with alt + mouse in column mode
+noremap <M-LeftMouse> <LeftMouse><Esc><C-V>
 
 " remove trailing whitespaces
 nnoremap <leader>, :%s/\s*$//<CR>
@@ -247,11 +274,19 @@ xnoremap <A-q> :call Uncomment()<CR>
 noremap <leader>dc :%s/\./,/g<CR>
 noremap <leader>cd :%s/\,/./g<CR>
 
-"### Open new buffer ###
+" open new buffer
 nnoremap <leader>b<left>   :leftabove  vnew<CR>
 nnoremap <leader>b<right>  :rightbelow vnew<CR>
 nnoremap <leader>b<up>     :leftabove  new<CR>
 nnoremap <leader>b<down>   :rightbelow new<CR>
+
+" navigate through windows
+nnoremap <silent> <A-Up> :wincmd k<CR>
+nnoremap <silent> <A-Down> :wincmd j<CR>
+nnoremap <silent> <A-Left> :wincmd h<CR>
+nnoremap <silent> <A-Right> :wincmd l<CR>
+
+" set equal buffer size
 nnoremap <leader>0         <C-w>=<CR>
 
 " toggle through buffers
@@ -299,8 +334,11 @@ nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\
 " Substitute the word under the cursor.
 nnoremap <leader>r :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
-" Set fortran as language for input file
+" Set ac2 as language for input file
 autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set syntax=ac2 encoding=utf-8 filetype=ac2
+
+" Set ac2_out as language for *.out file
+"autocmd BufNewFile,BufRead,BufReadPost *.out set syntax=ac2 encoding=utf-8 filetype=ac2_out
 
 " Set Python as language for Veusz file
 autocmd BufNewFile,BufRead,BufReadPost *.vsz,*.vst set syntax=python encoding=utf-8
@@ -313,13 +351,4 @@ autocmd BufNewFile,BufRead,BufReadPost *.vsz,*.vst set syntax=python encoding=ut
 " au BufWritePre *.f90,*.fpp :%s/\s\+$//e   " replace spaces with plus until end of line
 " au BufRead *.f90,*.fpp :%s/\t/    /g      " replace tabs with 4 spaces when OPENING fortran/AC2 file
 " au BufWritePre *.f90,*.fpp :%s/\t/    /g  " replace tabs with 4 spaces and SAVE fortran/AC2 file
-
-" create tags for AC2
-let g:tagbar_type_ac2 = {
-    \ 'ctagstype' : 'ac2',
-    \ 'kinds' : [
-        \ 'c:Control Words'
-        \ ],
-        \ 'sort' : 0
-    \ }
 
