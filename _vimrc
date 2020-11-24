@@ -106,9 +106,7 @@ let mapleader = "\<Space>"
 " toggle File Explorer
 nnoremap <F1> :NERDTreeToggle<CR>
 " toggle wrap
-nnoremap <silent><expr> <f2> ':set wrap! go'.'-+'[&wrap]."=b\r"
-" toggle column highlight
-nnoremap <F6> :set cursorcolumn!<CR>
+nnoremap <silent><expr> <F2> ':set wrap! go'.'-+'[&wrap]."=b\r"
 " map split view
 " vertical
 nnoremap <F3> <C-w><C-v><CR>
@@ -116,6 +114,8 @@ nnoremap <F3> <C-w><C-v><CR>
 nnoremap <F4> <C-w><C-s><CR>
 " set synchronous scrolling
 nnoremap <F5> :windo set invscrollbind<CR>
+" toggle column highlight
+nnoremap <F6> :set cursorcolumn!<CR>
 " search word under cursor
 nnoremap <F7> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
 " toggle code folding
@@ -143,7 +143,9 @@ nnoremap <F12> :e $MYVIMRC<CR>
 "########## FZF ###########"
 "##########################"
 
-"let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob'
+""let $FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+""command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
 
 if has('win32')
   " Disable preview on Windows since it doesn't really work
@@ -203,9 +205,9 @@ let g:ctrlsf_auto_focus = {
 let g:tagbar_show_tag_linenumbers = 1
 
 " jump tags backward and forward
-nnoremap <silent> <k7> :TagbarOpen fj<CR><C-p>
-nnoremap <silent> <k9> :TagbarOpen fj<CR><C-n>
-nnoremap <silent> <k8> :TagbarClose<CR>
+nnoremap <silent> <C-k7> :TagbarOpen fj<CR><C-p>
+nnoremap <silent> <C-k9> :TagbarOpen fj<CR><C-n>
+nnoremap <silent> <C-k8> :TagbarToggle<CR>
 
 " create tags for AC2
 let g:tagbar_type_ac2 = {
@@ -290,9 +292,9 @@ nnoremap <silent> <A-Right> :wincmd l<CR>
 nnoremap <leader>0         <C-w>=<CR>
 
 " toggle through buffers
-nnoremap <k1> :bp<CR>
-nnoremap <k0> :buffers<CR>:buffer<Space>
-nnoremap <k3> :bn<CR>
+nnoremap <C-k1> :bp<CR>
+nnoremap <C-k0> :buffers<CR>:buffer<Space>
+nnoremap <C-k3> :bn<CR>
 
 " save and close file with leader
 nnoremap <leader>w :w!<CR>
@@ -312,9 +314,6 @@ nnoremap <leader>f :windo diffoff<CR>
 " new line without insert mode
 nnoremap o o<Esc>
 nnoremap O O<Esc>
-
-" Toggle tag bar
-nnoremap <F8> :TagbarToggle<CR>
 
 " Toggle Quickfix window
 "nnoremap <leader>f :QFix<CR>
