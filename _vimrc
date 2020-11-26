@@ -144,7 +144,7 @@ nnoremap <F12> :e $MYVIMRC<CR>
 "##########################"
 
 ""let $FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
-let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all'
 ""command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
 
 if has('win32')
@@ -157,6 +157,7 @@ endif
 
 " Find files with fzf
 nnoremap <leader>p :Files $HOME<CR>
+nnoremap <leader>l :Files<CR>
 
 " search in file
 nnoremap -- :BLines!<CR>
@@ -293,7 +294,7 @@ nnoremap <leader>0         <C-w>=<CR>
 
 " toggle through buffers
 nnoremap <C-k1> :bp<CR>
-nnoremap <C-k0> :buffers<CR>:buffer<Space>
+nnoremap <C-k2> :buffers<CR>:buffer<Space>
 nnoremap <C-k3> :bn<CR>
 
 " save and close file with leader
