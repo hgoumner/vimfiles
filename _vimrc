@@ -20,7 +20,7 @@ Plug 'junegunn/vim-easy-align'                                       " align tex
 Plug 'preservim/tagbar'
 Plug 'vim-airline/vim-airline'
 Plug 'dyng/ctrlsf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 "Plug 'terryma/vim-multiple-cursors'
@@ -160,7 +160,7 @@ nnoremap <leader>p :Files $HOME<CR>
 nnoremap <leader>l :Files<CR>
 
 " search in file
-nnoremap -- :BLines!<CR>
+nnoremap -- :Lines!<CR>
 nnoremap ?? :Rg!<CR>
 
 " show history
