@@ -270,9 +270,9 @@ inoremap [ []<left>
 inoremap { {}<left>
 
 " comment out lines
-source $HOME/vimfiles/additional/vcomments.vim
-xnoremap <C-q> :call Comment()<CR>
-xnoremap <A-q> :call Uncomment()<CR>
+"source $HOME/vimfiles/additional/vcomments.vim
+"xnoremap <C-x> :call Comment()<CR>
+"xnoremap <A-q> :call Uncomment()<CR>
 
 " replace comma with dot or dot with comma
 noremap <leader>dc :%s/\./,/g<CR>
