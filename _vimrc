@@ -214,7 +214,8 @@ nnoremap <silent> <C-k8> :TagbarToggle<CR>
 let g:tagbar_type_ac2 = {
     \ 'ctagstype' : 'ac2',
     \ 'kinds' : [
-        \ 'c:Control Words'
+        \ 'c:Control Words',
+        \ 'k:Key Words'
         \ ],
         \ 'sort' : 0
     \ }
