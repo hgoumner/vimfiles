@@ -4,3 +4,5 @@ _viminfo
 vim-plugged/
 
 .netrwhist
+
+pack/kite/
