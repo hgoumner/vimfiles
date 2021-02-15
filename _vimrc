@@ -37,6 +37,9 @@ augroup END
 " Vim settings
 "############################################################################################################"
 
+" start vim/gvim maximized
+autocmd GUIEnter * simalt ~X
+
 " Set language to english
 set langmenu=en_US
 let $LANG   ='en_US'
@@ -229,6 +232,15 @@ let g:tagbar_type_ac2_out = {
     \ }  
 "        \ 'p:Parameters',
 "        \ 'r:ATHLET Run Summary'
+
+"##########################"
+"######## Minimap #########"
+"##########################"
+
+""nnoremap <leader>mm :Minimap<CR>
+""nnoremap <leader>mc :MinimapClose<CR>
+let g:minimap_show='<leader>mm'
+
 
 "##########################"
 "####### Personal #########"
