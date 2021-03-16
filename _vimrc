@@ -23,7 +23,8 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
-"Plug 'terryma/vim-multiple-cursors'
+Plug 'https://github.com/inkarkat/vim-ingo-library.git'
+Plug 'https://github.com/inkarkat/vim-SearchPosition.git'
 
 call plug#end()
 
@@ -98,6 +99,9 @@ autocmd QuickFixCmdPost *grep* cwindow
 " set Vim leader key
 let mapleader = "\<Space>"
 
+" set shortmess for search count
+set shortmess-=S
+
 "############################################################################################################"
 " Editor settings
 "############################################################################################################"
@@ -134,10 +138,10 @@ nnoremap <F12> :e $MYVIMRC<CR>
 "#######################"
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-"xnoremap ga <Plug>(EasyAlign)
+xnoremap ga :EasyAlign 
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-"nnoremap ga <Plug>(EasyAlign)
+nnoremap ga :EasyAlign 
 
 "let NERDTreeIgnore=['\~$', '\.o$[[file]]', '\.pyc$[[file]]']
 " nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
@@ -234,15 +238,6 @@ let g:tagbar_type_ac2_out = {
 "        \ 'r:ATHLET Run Summary'
 
 "##########################"
-"######## Minimap #########"
-"##########################"
-
-""nnoremap <leader>mm :Minimap<CR>
-""nnoremap <leader>mc :MinimapClose<CR>
-let g:minimap_show='<leader>mm'
-
-
-"##########################"
 "####### Personal #########"
 "##########################"
 
@@ -290,9 +285,10 @@ vnoremap <A-down> :m '>+1<CR>gv=gv
 vnoremap <A-up> :m '<-2<CR>gv=gv
 
 " comment out lines
-"source $HOME/vimfiles/additional/vcomments.vim
-"xnoremap <C-x> :call Comment()<CR>
-"xnoremap <A-q> :call Uncomment()<CR>
+source $HOME/vimfiles/additional/vcomments.vim
+nnoremap <C-q> :call ToggleComment()<CR>
+nnoremap <A-,> :call Comment()<CR>
+nnoremap <A-.> :call UnComment()<CR>
 
 " replace comma with dot or dot with comma
 noremap <leader>dc :%s/\./,/g<CR>
