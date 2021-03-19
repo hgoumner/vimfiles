@@ -369,3 +369,4 @@ autocmd BufNewFile,BufRead,BufReadPost *.vsz,*.vst set syntax=python encoding=ut
 " au BufRead *.f90,*.fpp :%s/\t/    /g      " replace tabs with 4 spaces when OPENING fortran/AC2 file
 " au BufWritePre *.f90,*.fpp :%s/\t/    /g  " replace tabs with 4 spaces and SAVE fortran/AC2 file
 
+au BufRead *.html :%s/\t/    /g      " replace tabs with 4 spaces when OPENING fortran/AC2 file
