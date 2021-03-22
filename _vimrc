@@ -17,18 +17,18 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }              " file expl
 Plug 'AndrewRadev/linediff.vim'                                      " fast line diff
 Plug 'haya14busa/incsearch.vim'                                      " incremental search
 Plug 'junegunn/vim-easy-align'                                       " align text according to '=' location
-Plug 'preservim/tagbar'
-Plug 'vim-airline/vim-airline'
-Plug 'dyng/ctrlsf.vim'
-Plug 'junegunn/fzf'
+Plug 'preservim/tagbar'                                              " tag bar showing tags in file (used mainly for ATHLET input)
+Plug 'vim-airline/vim-airline'                                       " enhanced status bar at bottom of buffer
+Plug 'junegunn/fzf'                                                  " powerful search tool
 Plug 'junegunn/fzf.vim'
-Plug 'mhinz/vim-startify'
-Plug 'https://github.com/inkarkat/vim-ingo-library.git'
-Plug 'https://github.com/inkarkat/vim-SearchPosition.git'
+Plug 'mhinz/vim-startify'                                            " show most recently used files at startup
+" Plug 'https://github.com/inkarkat/vim-ingo-library.git'              " untested: show search matches counter at bottom
+" Plug 'https://github.com/inkarkat/vim-SearchPosition.git'
+" Plug 'dyng/ctrlsf.vim'
 
 call plug#end()
 
-" auto-reload vimrc-changes ...
+" auto-reload vimrc-changes
 augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc so $MYVIMRC
@@ -47,8 +47,7 @@ let $LANG   ='en_US'
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
-" open NERDTree on startup
-" autocmd VimEnter * NERDTree
+" show NERDTree bookmarks
 let NERDTreeShowBookmarks=1
 
 " Set color scheme
@@ -150,9 +149,8 @@ nnoremap ga :EasyAlign
 "########## FZF ###########"
 "##########################"
 
-""let $FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+" let $FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all'
-""command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
 
 if has('win32')
   " Disable preview on Windows since it doesn't really work
@@ -187,23 +185,23 @@ let g:fzf_layout = { 'window': '10new' }
 " - down / up / left / right
 let g:fzf_layout = { 'down': '40%' }
 
-"##########################"
-"######### CtrlSF #########"
-"##########################"
-
-" search result settings
-nnoremap <leader>a :CtrlSF -R -I ""<Left>
-nnoremap <leader>c <Plug>CtrlSFCwordPath -W<CR>
-"nnoremap <leader>c :CtrlSFFocus<CR>
-"nnoremap <leader>C :CtrlSFToggle<CR>
-
-" plugin settings
-let g:ctrlsf_winsize = '33%'
-let g:ctrlsf_auto_close = 0
-let g:ctrlsf_confirm_save = 0
-let g:ctrlsf_auto_focus = {
-    \ 'at': 'start',
-    \ }
+" ##########################"
+" ######### CtrlSF #########"
+" ##########################"
+" 
+" " search result settings
+" nnoremap <leader>a :CtrlSF -R -I ""<Left>
+" nnoremap <leader>c <Plug>CtrlSFCwordPath -W<CR>
+" "nnoremap <leader>c :CtrlSFFocus<CR>
+" "nnoremap <leader>C :CtrlSFToggle<CR>
+" 
+" " plugin settings
+" let g:ctrlsf_winsize = '33%'
+" let g:ctrlsf_auto_close = 0
+" let g:ctrlsf_confirm_save = 0
+" let g:ctrlsf_auto_focus = {
+"     \ 'at': 'start',
+"     \ }
 
 "##########################"
 "######### Tagbar #########"
@@ -269,20 +267,17 @@ nnoremap <C-i> gg=G<CR>
 inoremap <Tab> <C-n>
 
 " auto-close
-inoremap ' ''<left>
-inoremap " ""<left>
 inoremap ( ()<left>
-inoremap % %%<left>
 inoremap [ []<left>
 inoremap { {}<left>
 
 " move lines
-nnoremap <A-down> :m .+1<CR>==
-nnoremap <A-up> :m .-2<CR>==
-inoremap <A-down> <Esc>:m .+1<CR>==gi
-inoremap <A-up> <Esc>:m .-2<CR>==gi
-vnoremap <A-down> :m '>+1<CR>gv=gv
-vnoremap <A-up> :m '<-2<CR>gv=gv
+nnoremap <A-k2>        :m .+1<CR>==
+nnoremap <A-k8>        :m .-2<CR>==
+inoremap <A-k2>   <Esc>:m .+1<CR>==gi
+inoremap <A-k8>   <Esc>:m .-2<CR>==gi
+vnoremap <A-k2>        :m '>+1<CR>gv=gv
+vnoremap <A-k8>        :m '<-2<CR>gv=gv
 
 " comment out lines
 source $HOME/vimfiles/additional/vcomments.vim
@@ -301,13 +296,13 @@ nnoremap <leader>b<up>     :leftabove  new<CR>
 nnoremap <leader>b<down>   :rightbelow new<CR>
 
 " navigate through windows
-nnoremap <silent> <A-Up> :wincmd k<CR>
-nnoremap <silent> <A-Down> :wincmd j<CR>
-nnoremap <silent> <A-Left> :wincmd h<CR>
+nnoremap <silent> <A-Up>    :wincmd k<CR>
+nnoremap <silent> <A-Down>  :wincmd j<CR>
+nnoremap <silent> <A-Left>  :wincmd h<CR>
 nnoremap <silent> <A-Right> :wincmd l<CR>
 
 " set equal buffer size
-nnoremap <leader>0         <C-w>=<CR>
+nnoremap <leader>0 <C-w>=<CR>
 
 " toggle through buffers
 nnoremap <C-k1> :bp<CR>
@@ -339,34 +334,46 @@ nnoremap O O<Esc>
 " Search settings
 "############################################################################################################"
 
-"set hlsearch                                                         " highlight search pattern
-set incsearch                                                        " set incremental search
-set ignorecase                                                       " activate case-insensitive search
-set smartcase
+"set hlsearch
+set incsearch                                                        " highlight search pattern
+set ignorecase                                                       " set incremental search
+set smartcase                                                        " activate case-insensitive search
 
 " highlight word under cursor with double click
-set mouse=a     "Enables mouse click
+set mouse=a                                                          " Enables mouse click
 nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr>:set hls<cr>
 
-" Substitute the word under the cursor.
+" Substitute the word under the cursor
 nnoremap <leader>r :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
-
-" Set ac2 as language for input file
-autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set syntax=ac2 encoding=utf-8 filetype=ac2
-
-" Set ac2_out as language for *.out file
-"autocmd BufNewFile,BufRead,BufReadPost *.out set syntax=ac2 encoding=utf-8 filetype=ac2_out
-
-" Set Python as language for Veusz file
-autocmd BufNewFile,BufRead,BufReadPost *.vsz,*.vst set syntax=python encoding=utf-8
 
 "############################################################################################################"
 " Syntax settings
 "############################################################################################################"
 
-" ############# FORTRAN / AC2" #############
+" ############# FORTRAN / AC2 #############
 " au BufWritePre *.f90,*.fpp :%s/\s\+$//e   " replace spaces with plus until end of line
 " au BufRead *.f90,*.fpp :%s/\t/    /g      " replace tabs with 4 spaces when OPENING fortran/AC2 file
 " au BufWritePre *.f90,*.fpp :%s/\t/    /g  " replace tabs with 4 spaces and SAVE fortran/AC2 file
 
-au BufRead *.html :%s/\t/    /g      " replace tabs with 4 spaces when OPENING fortran/AC2 file
+" Set ac2 as language for input file
+au BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set syntax=ac2 encoding=utf-8 filetype=ac2
+
+" Set ac2_out as language for *.out file
+"autocmd BufNewFile,BufRead,BufReadPost *.out set syntax=ac2 encoding=utf-8 filetype=ac2_out
+
+" ############# HTML #############
+" au BufWritePre *.html :%s/\t/    /g            " replace tabs with 4 spaces when OPENING file
+
+" ############# Python #############
+" au BufWritePre *.py :%s/\t/    /g              " replace tabs with 4 spaces when OPENING file
+                                                 " auto-close single quotes
+au FileType python inoremap<buffer> ' ''<left>
+                                                 " auto-close double quotes
+au FileType python inoremap<buffer> " ""<left>
+
+" Set Python as language for Veusz file
+au BufNewFile,BufRead,BufReadPost *.vsz,*.vst set syntax=python encoding=utf-8
+
+" ############# DOS Batch #############
+au FileType dosbatch inoremap<buffer> % %%<left>
+
