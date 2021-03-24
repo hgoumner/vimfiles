@@ -315,6 +315,9 @@ nnoremap <leader>b<down>   :rightbelow new<CR>
 " set equal buffer size
 nnoremap <leader>0 <C-w>=<CR>
 
+" show all open buffers in vertical split
+nnoremap <leader>bv :vert sball<CR>
+
 " save and close file with leader
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>e :browse confirm saveas<CR>
