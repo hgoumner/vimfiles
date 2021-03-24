@@ -22,8 +22,6 @@ Plug 'vim-airline/vim-airline'                                       " enhanced 
 Plug 'junegunn/fzf'                                                  " powerful search tool
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'                                            " show most recently used files at startup
-" Plug 'https://github.com/inkarkat/vim-ingo-library.git'              " untested: show search matches counter at bottom
-" Plug 'https://github.com/inkarkat/vim-SearchPosition.git'
 " Plug 'dyng/ctrlsf.vim'
 
 call plug#end()
@@ -129,6 +127,7 @@ inoremap <F9> <C-O>za
 nnoremap <F9> za
 onoremap <F9> <C-C>za
 vnoremap <F9> zf"
+
 " edit _vimrc file
 nnoremap <F12> :e $MYVIMRC<CR>
 
@@ -246,12 +245,6 @@ nnoremap <C-a> ggVG
 " select with alt + mouse in column mode
 noremap <M-LeftMouse> <LeftMouse><Esc><C-V>
 
-" remove trailing whitespaces
-nnoremap <leader>, :%s/\s*$//<CR>
-
-" remove empty lines
-nnoremap <leader>. :g:^\h*$:d<CR>
-
 " toggle search highlighting
 nnoremap <C-k0> :set hlsearch!<CR>
 
@@ -273,18 +266,41 @@ inoremap [ []<left>
 inoremap { {}<left>
 
 " move lines
-nnoremap <A-k2>        :m .+1<CR>==
-nnoremap <A-k8>        :m .-2<CR>==
-inoremap <A-k2>   <Esc>:m .+1<CR>==gi
-inoremap <A-k8>   <Esc>:m .-2<CR>==gi
-vnoremap <A-k2>        :m '>+1<CR>gv=gv
-vnoremap <A-k8>        :m '<-2<CR>gv=gv
+nnoremap <silent> <A-k2>        :m .+1<CR>==
+nnoremap <silent> <A-k8>        :m .-2<CR>==
+inoremap <silent> <A-k2>   <Esc>:m .+1<CR>==gi
+inoremap <silent> <A-k8>   <Esc>:m .-2<CR>==gi
+vnoremap <silent> <A-k2>        :m '>+1<CR>gv=gv
+vnoremap <silent> <A-k8>        :m '<-2<CR>gv=gv
 
 " comment out lines
 source $HOME/vimfiles/additional/vcomments.vim
 nnoremap <C-q> :call ToggleComment()<CR>
 nnoremap <A-,> :call Comment()<CR>
 nnoremap <A-.> :call UnComment()<CR>
+
+" toggle through buffers
+nnoremap <C-k1> :bp<CR>
+nnoremap <C-k2> :buffers<CR>:buffer<Space>
+nnoremap <C-k3> :bn<CR>
+
+" navigate through windows
+nnoremap <silent> <A-Up>    :wincmd k<CR>
+nnoremap <silent> <A-Down>  :wincmd j<CR>
+nnoremap <silent> <A-Left>  :wincmd h<CR>
+nnoremap <silent> <A-Right> :wincmd l<CR>
+
+" new line without insert mode
+nnoremap o o<Esc>
+nnoremap O O<Esc> 
+
+" ############# leader mappings #############
+
+" remove trailing whitespaces
+nnoremap <leader>, :%s/\s*$//<CR>
+
+" remove empty lines
+nnoremap <leader>. :g:^\h*$:d<CR>
 
 " replace comma with dot or dot with comma
 noremap <leader>dc :%s/\./,/g<CR>
@@ -296,19 +312,8 @@ nnoremap <leader>b<right>  :rightbelow vnew<CR>
 nnoremap <leader>b<up>     :leftabove  new<CR>
 nnoremap <leader>b<down>   :rightbelow new<CR>
 
-" navigate through windows
-nnoremap <silent> <A-Up>    :wincmd k<CR>
-nnoremap <silent> <A-Down>  :wincmd j<CR>
-nnoremap <silent> <A-Left>  :wincmd h<CR>
-nnoremap <silent> <A-Right> :wincmd l<CR>
-
 " set equal buffer size
 nnoremap <leader>0 <C-w>=<CR>
-
-" toggle through buffers
-nnoremap <C-k1> :bp<CR>
-nnoremap <C-k2> :buffers<CR>:buffer<Space>
-nnoremap <C-k3> :bn<CR>
 
 " save and close file with leader
 nnoremap <leader>w :w!<CR>
@@ -325,12 +330,12 @@ nnoremap <leader>n :enew<CR>
 nnoremap <leader>d :windo diffthis<CR>
 nnoremap <leader>f :windo diffoff<CR>
 
-" new line without insert mode
-nnoremap o o<Esc>
-nnoremap O O<Esc>
+" Substitute the word under the cursor
+nnoremap <leader>r :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Toggle Quickfix window
 "nnoremap <leader>f :QFix<CR>
+
 "############################################################################################################"
 " Search settings
 "############################################################################################################"
@@ -343,9 +348,6 @@ set smartcase                                                        " activate 
 " highlight word under cursor with double click
 set mouse=a                                                          " Enables mouse click
 nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr>:set hls<cr>
-
-" Substitute the word under the cursor
-nnoremap <leader>r :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 "############################################################################################################"
 " Syntax settings
