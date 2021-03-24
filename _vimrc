@@ -132,9 +132,13 @@ vnoremap <F9> zf"
 " edit _vimrc file
 nnoremap <F12> :e $MYVIMRC<CR>
 
-"#######################"
-"### Plugin mappings ###"
-"#######################"
+"#############################################"
+"############## Plugin mappings ##############"
+"#############################################"
+
+"##########################"
+"####### EasyAlign ########"
+"##########################"
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xnoremap ga :EasyAlign 
@@ -142,8 +146,9 @@ xnoremap ga :EasyAlign
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nnoremap ga :EasyAlign 
 
-"let NERDTreeIgnore=['\~$', '\.o$[[file]]', '\.pyc$[[file]]']
-" nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+" align to import statement or equal sign
+xnoremap <leader>ai :EasyAlign /import/<CR>
+xnoremap <leader>a0 :EasyAlign =<CR>
 
 "##########################"
 "########## FZF ###########"
@@ -152,13 +157,9 @@ nnoremap ga :EasyAlign
 " let $FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all'
 
-if has('win32')
-  " Disable preview on Windows since it doesn't really work
-  let g:fzf_preview_window = ''
-else
-  command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-endif
+" preview window settings
+let s:is_win = 1
+command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, {'options': [ '--info=inline', '--preview', 'bat {}']}, <bang>0)
 
 " Find files with fzf
 nnoremap <leader>p :Files $HOME<CR>
@@ -185,9 +186,9 @@ let g:fzf_layout = { 'window': '10new' }
 " - down / up / left / right
 let g:fzf_layout = { 'down': '40%' }
 
-" ##########################"
-" ######### CtrlSF #########"
-" ##########################"
+"##########################"
+"######### CtrlSF #########"
+"##########################"
 " 
 " " search result settings
 " nnoremap <leader>a :CtrlSF -R -I ""<Left>
@@ -217,21 +218,21 @@ nnoremap <silent> <C-k8> :TagbarToggle<CR>
 
 " create tags for AC2
 let g:tagbar_type_ac2 = {
-    \ 'ctagstype' : 'ac2',
-    \ 'kinds' : [
-        \ 'c:Control Words',
-        \ 'k:Key Words'
-        \ ],
-        \ 'sort' : 0
-    \ }
+            \ 'ctagstype' : 'ac2',
+            \ 'kinds' : [
+            \ 'c:Control Words',
+            \ 'k:Key Words'
+            \ ],
+            \ 'sort' : 0
+            \ }
 
 let g:tagbar_type_ac2_out = {
-    \ 'ctagstype' : 'ac2_out',
-    \ 'kinds' : [
-        \ 'm:Main Edits'
-        \ ],
-        \ 'sort' : 1
-    \ }  
+            \ 'ctagstype' : 'ac2_out',
+            \ 'kinds' : [
+            \ 'm:Main Edits'
+            \ ],
+            \ 'sort' : 1
+            \ }  
 "        \ 'p:Parameters',
 "        \ 'r:ATHLET Run Summary'
 
@@ -351,29 +352,34 @@ nnoremap <leader>r :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 "############################################################################################################"
 
 " ############# FORTRAN / AC2 #############
-" au BufWritePre *.f90,*.fpp :%s/\s\+$//e   " replace spaces with plus until end of line
-" au BufRead *.f90,*.fpp :%s/\t/    /g      " replace tabs with 4 spaces when OPENING fortran/AC2 file
-" au BufWritePre *.f90,*.fpp :%s/\t/    /g  " replace tabs with 4 spaces and SAVE fortran/AC2 file
 
 " Set ac2 as language for input file
-au BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set syntax=ac2 encoding=utf-8 filetype=ac2
+au BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set
+            \ syntax=ac2
+            \ encoding=utf-8
+            \ filetype=ac2
 
 " Set ac2_out as language for *.out file
-"autocmd BufNewFile,BufRead,BufReadPost *.out set syntax=ac2 encoding=utf-8 filetype=ac2_out
-
-" ############# HTML #############
-" au BufWritePre *.html :%s/\t/    /g            " replace tabs with 4 spaces when OPENING file
+au BufNewFile,BufRead,BufReadPost *.out set
+            \ syntax=ac2
+            \ encoding=utf-8
+            \ filetype=ac2_out 
 
 " ############# Python #############
-" au BufWritePre *.py :%s/\t/    /g              " replace tabs with 4 spaces when OPENING file
-                                                 " auto-close single quotes
-au FileType python inoremap<buffer> ' ''<left>
-                                                 " auto-close double quotes
-au FileType python inoremap<buffer> " ""<left>
 
-" Set Python as language for Veusz file
-au BufNewFile,BufRead,BufReadPost *.vsz,*.vst set syntax=python encoding=utf-8
+au BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst set
+            \ syntax=python
+            \ encoding=utf-8
+            \ filetype=python
+
+au BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> ' ''<left>
+au BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> " ""<left>
+
+au BufWritePre *.py :%s/\t/    /g              " replace tabs with 4 spaces when SAVING file
 
 " ############# DOS Batch #############
 au FileType dosbatch inoremap<buffer> % %%<left>
+
+" ############# HTML #############
+" au BufWritePre *.html :%s/\t/    /g            " replace tabs with 4 spaces when OPENING file
 
