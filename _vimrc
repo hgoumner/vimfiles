@@ -19,10 +19,9 @@ Plug 'haya14busa/incsearch.vim'                                      " increment
 Plug 'junegunn/vim-easy-align'                                       " align text according to '=' location
 Plug 'preservim/tagbar'                                              " tag bar showing tags in file (used mainly for ATHLET input)
 Plug 'vim-airline/vim-airline'                                       " enhanced status bar at bottom of buffer
-Plug 'junegunn/fzf'                                                  " powerful search tool
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                                                  " powerful search tool
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'                                            " show most recently used files at startup
-" Plug 'dyng/ctrlsf.vim'
 
 call plug#end()
 
@@ -153,9 +152,6 @@ xnoremap <leader>a0 :EasyAlign =<CR>
 "########## FZF ###########"
 "##########################"
 
-" let $FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
-let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all'
-
 " preview window settings
 let s:is_win = 1
 command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, {'options': [ '--info=inline', '--preview', 'bat {}']}, <bang>0)
@@ -165,8 +161,8 @@ nnoremap <leader>p :Files $HOME<CR>
 nnoremap <leader>l :Files<CR>
 
 " search in file
-nnoremap -- :Lines!<CR>
-nnoremap ?? :Rg!<CR>
+nnoremap -- :Lines<CR>
+nnoremap ?? :Rg<CR>
 
 " show history
 nnoremap <leader>h :History<CR>
@@ -185,23 +181,20 @@ let g:fzf_layout = { 'window': '10new' }
 " - down / up / left / right
 let g:fzf_layout = { 'down': '40%' }
 
-"##########################"
-"######### CtrlSF #########"
-"##########################"
-" 
-" " search result settings
-" nnoremap <leader>a :CtrlSF -R -I ""<Left>
-" nnoremap <leader>c <Plug>CtrlSFCwordPath -W<CR>
-" "nnoremap <leader>c :CtrlSFFocus<CR>
-" "nnoremap <leader>C :CtrlSFToggle<CR>
-" 
-" " plugin settings
-" let g:ctrlsf_winsize = '33%'
-" let g:ctrlsf_auto_close = 0
-" let g:ctrlsf_confirm_save = 0
-" let g:ctrlsf_auto_focus = {
-"     \ 'at': 'start',
-"     \ }
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" let $FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all'
 
 "##########################"
 "######### Tagbar #########"
@@ -275,7 +268,7 @@ vnoremap <silent> <A-k8>        :m '<-2<CR>gv=gv
 
 " comment out lines
 source $HOME/vimfiles/additional/vcomments.vim
-nnoremap <C-q> :call ToggleComment()<CR>
+nnoremap <A-q> :call ToggleComment()<CR>
 nnoremap <A-,> :call Comment()<CR>
 nnoremap <A-.> :call UnComment()<CR>
 
@@ -350,7 +343,7 @@ set smartcase                                                        " activate 
 
 " highlight word under cursor with double click
 set mouse=a                                                          " Enables mouse click
-nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr>:set hls<cr>
+inoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr>:set hls<cr>
 
 "############################################################################################################"
 " Syntax settings
