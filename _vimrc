@@ -357,11 +357,15 @@ au BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set
             \ encoding=utf-8
             \ filetype=ac2
 
+au BufWritePre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :%s/\t/    /e              " replace tabs with 4 spaces when SAVING file
+au BufWritePre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :%s/\s\+$//e               " remove trailing white space(s)
+
 " Set ac2_out as language for *.out file
 au BufNewFile,BufRead,BufReadPost *.out set
             \ syntax=ac2
             \ encoding=utf-8
             \ filetype=ac2_out 
+
 
 " ############# Python #############
 
@@ -373,7 +377,8 @@ au BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst set
 au BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> ' ''<left>
 au BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> " ""<left>
 
-au BufWritePre *.py :%s/\t/    /g              " replace tabs with 4 spaces when SAVING file
+au BufWritePre *.py :%s/\t/    /e              " replace tabs with 4 spaces when SAVING file
+au BufWritePre *.py :%s/\s\+$//e               " remove trailing white space(s)
 
 " ############# DOS Batch #############
 au FileType dosbatch inoremap<buffer> % %%<left>

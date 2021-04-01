@@ -18,7 +18,7 @@ syn match ac2PW "^-----.*$"
 syn match ac2Comment "@.*$"
 
 " Highlight Links
-" ---------------------------------------------------------------------
+" ----------------------------------------------
 hi link ac2CW Statement
 hi link ac2KW Function
 hi link ac2SW Debug
