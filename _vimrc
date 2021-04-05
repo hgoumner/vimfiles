@@ -19,9 +19,10 @@ Plug 'haya14busa/incsearch.vim'                                      " increment
 Plug 'junegunn/vim-easy-align'                                       " align text according to '=' location
 Plug 'preservim/tagbar'                                              " tag bar showing tags in file (used mainly for ATHLET input)
 Plug 'vim-airline/vim-airline'                                       " enhanced status bar at bottom of buffer
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                                                  " powerful search tool
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                  " powerful search tool
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'                                            " show most recently used files at startup
+Plug 'markonm/traces.vim'                                            " show search/replace matches while typing
 
 call plug#end()
 
@@ -145,8 +146,8 @@ xnoremap ga :EasyAlign
 nnoremap ga :EasyAlign 
 
 " align to import statement or equal sign
-xnoremap <leader>ai :EasyAlign /import/<CR>
-xnoremap <leader>a0 :EasyAlign =<CR>
+xnoremap <leader>ii :EasyAlign /import/<CR>
+xnoremap <leader>00 :EasyAlign =<CR>
 
 "##########################"
 "########## FZF ###########"
@@ -238,6 +239,10 @@ nnoremap <C-a> ggVG
 " select with alt + mouse in column mode
 noremap <M-LeftMouse> <LeftMouse><Esc><C-V>
 
+" enter search and replace
+noremap ,, :%s:::g<Left><Left><Left>
+noremap ,. :%s:\<<C-r><C-w>\>:<C-r><C-w>:gI<Left><Left><Left>
+
 " toggle search highlighting
 nnoremap <C-k0> :set hlsearch!<CR>
 
@@ -325,9 +330,6 @@ nnoremap <leader>n :enew<CR>
 " diff of currently opened buffers
 nnoremap <leader>d :windo diffthis<CR>
 nnoremap <leader>f :windo diffoff<CR>
-
-" Substitute the word under the cursor
-nnoremap <leader>r :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Toggle Quickfix window
 "nnoremap <leader>f :QFix<CR>
