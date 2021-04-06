@@ -295,14 +295,17 @@ nnoremap O O<Esc>
 " ############# leader mappings #############
 
 " remove trailing whitespaces
-nnoremap <leader>, :%s/\s*$//<CR>
+nnoremap <leader>tw :%s/\s*$//<CR>
 
 " remove empty lines
 nnoremap <leader>. :g:^\h*$:d<CR>
 
 " replace comma with dot or dot with comma
-noremap <leader>dc :%s/\./,/g<CR>
-noremap <leader>cd :%s/\,/./g<CR>
+nnoremap <leader>dc :%s:\.:,:g<CR>
+nnoremap <leader>cd :%s:\,:.:g<CR>
+
+" replace tabs with spaces
+nnoremap <leader>ts :%s:\t:    :g<CR>
 
 " open new buffer
 nnoremap <leader>b<left>   :leftabove  vnew<CR>
