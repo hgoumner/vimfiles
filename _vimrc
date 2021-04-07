@@ -254,6 +254,9 @@ vnoremap <C-c> "+y
 " paste selection (from clipboard)
 inoremap <C-v> <C-r>+
 
+" delete and send to void register
+vnoremap <Del> "_d
+
 " fix indentation of complete file
 nnoremap <C-i> gg=G<CR>
 
