@@ -1,5 +1,5 @@
 "############################################################################################################"
-"# Personal vimrc settings #"
+"# Hristo's vimrc settings
 "############################################################################################################"
 
 "###########################"
@@ -26,15 +26,15 @@ Plug 'markonm/traces.vim'                                            " show sear
 
 call plug#end()
 
+"###########################"
+" Vim settings
+"###########################"
+
 " auto-reload vimrc-changes
 augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc so $MYVIMRC
 augroup END
-
-"############################################################################################################"
-" Vim settings
-"############################################################################################################"
 
 " start vim/gvim maximized
 autocmd GUIEnter * simalt ~X
@@ -57,6 +57,7 @@ set guifont=Cousine:h11
 
 " Show line and column numbers, line endings
 set number
+set relativenumber
 set ruler
 set cursorline
 set list
@@ -99,13 +100,9 @@ let mapleader = "\<Space>"
 " set shortmess for search count
 set shortmess-=S
 
-"############################################################################################################"
-" Editor settings
-"############################################################################################################"
-
-"######################"
-"### F key mappings ###"
-"######################"
+"###########################"
+" F key mappings
+"###########################"
 
 " toggle File Explorer
 nnoremap <F1> :NERDTreeToggle<CR>
@@ -135,9 +132,9 @@ nnoremap <F12> :e $MYVIMRC<CR>
 "############## Plugin mappings ##############"
 "#############################################"
 
-"##########################"
-"####### EasyAlign ########"
-"##########################"
+"###########################"
+" EasyAlign
+"###########################"
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xnoremap ga :EasyAlign 
@@ -149,9 +146,9 @@ nnoremap ga :EasyAlign
 xnoremap <leader>ii :EasyAlign /import/<CR>
 xnoremap <leader>00 :EasyAlign =<CR>
 
-"##########################"
-"########## FZF ###########"
-"##########################"
+"###########################"
+" FZF
+"###########################"
 
 " preview window settings
 let s:is_win = 1
@@ -197,9 +194,9 @@ let g:fzf_action = {
 " let $FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all'
 
-"##########################"
-"######### Tagbar #########"
-"##########################"
+"###########################"
+" Tagbar
+"###########################"
 
 " show line number of tags
 let g:tagbar_show_tag_linenumbers = 1
@@ -229,9 +226,9 @@ let g:tagbar_type_ac2_out = {
 "        \ 'p:Parameters',
 "        \ 'r:ATHLET Run Summary'
 
-"##########################"
-"####### Personal #########"
-"##########################"
+"###########################"
+" Personal
+"###########################"
 
 " select all
 nnoremap <C-a> ggVG
@@ -337,9 +334,9 @@ nnoremap <leader>f :windo diffoff<CR>
 " Toggle Quickfix window
 "nnoremap <leader>f :QFix<CR>
 
-"############################################################################################################"
+"###########################"
 " Search settings
-"############################################################################################################"
+"###########################"
 
 "set hlsearch
 set incsearch                                                        " highlight search pattern
@@ -350,9 +347,9 @@ set smartcase                                                        " activate 
 set mouse=a                                                          " Enables mouse click
 inoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr>:set hls<cr>
 
-"############################################################################################################"
+"###########################"
 " Syntax settings
-"############################################################################################################"
+"###########################"
 
 " ############# FORTRAN / AC2 #############
 
