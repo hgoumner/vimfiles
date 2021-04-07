@@ -32,8 +32,8 @@ call plug#end()
 
 " auto-reload vimrc-changes
 augroup myvimrc
-    au!
-    au BufWritePost .vimrc,_vimrc,vimrc so $MYVIMRC
+    autocmd!
+    autocmd BufWritePost .vimrc,_vimrc,vimrc so $MYVIMRC
 augroup END
 
 " start vim/gvim maximized
@@ -57,10 +57,12 @@ set guifont=Cousine:h11
 
 " Show line and column numbers, line endings
 set number
-set relativenumber
 set ruler
 set cursorline
 set list
+
+" command line completion
+set wildmenu
 
 " Turn on syntax highlighting
 syntax on
@@ -117,13 +119,16 @@ nnoremap <F4> <C-w><C-s><CR>
 nnoremap <F5> :windo set invscrollbind<CR>
 " toggle column highlight
 nnoremap <F6> :set cursorcolumn!<CR>
+" toggle relative line numbers
+nnoremap <F7> :set relativenumber!<CR>
 " search word under cursor
-nnoremap <F7> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
+nnoremap <F8> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
+
 " toggle code folding
-inoremap <F9> <C-O>za
-nnoremap <F9> za
-onoremap <F9> <C-C>za
-vnoremap <F9> zf"
+" inoremap <F9> <C-O>za
+" nnoremap <F9> za
+" onoremap <F9> <C-C>za
+" vnoremap <F9> zf"
 
 " edit _vimrc file
 nnoremap <F12> :e $MYVIMRC<CR>
@@ -331,6 +336,10 @@ nnoremap <leader>n :enew<CR>
 nnoremap <leader>d :windo diffthis<CR>
 nnoremap <leader>f :windo diffoff<CR>
 
+" diff between current buffer state and state of file on drive (as loaded)
+command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+nnoremap <leader>dt :DiffOrig<CR>
+
 " Toggle Quickfix window
 "nnoremap <leader>f :QFix<CR>
 
@@ -354,16 +363,16 @@ inoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\
 " ############# FORTRAN / AC2 #############
 
 " Set ac2 as language for input file
-au BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set
+autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set
             \ syntax=ac2
             \ encoding=utf-8
             \ filetype=ac2
 
-au BufWritePre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :%s/\t/    /e              " replace tabs with 4 spaces when SAVING file
-au BufWritePre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :%s/\s\+$//e               " remove trailing white space(s)
+autocmd BufWritePre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :%s/\t/    /e              " replace tabs with 4 spaces when SAVING file
+autocmd BufWritePre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :%s/\s\+$//e               " remove trailing white space(s)
 
 " Set ac2_out as language for *.out file
-au BufNewFile,BufRead,BufReadPost *.out set
+autocmd BufNewFile,BufRead,BufReadPost *.out set
             \ syntax=ac2
             \ encoding=utf-8
             \ filetype=ac2_out 
@@ -371,20 +380,20 @@ au BufNewFile,BufRead,BufReadPost *.out set
 
 " ############# Python #############
 
-au BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst set
+autocmd BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst set
             \ syntax=python
             \ encoding=utf-8
             \ filetype=python
 
-au BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> ' ''<left>
-au BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> " ""<left>
+autocmd BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> ' ''<left>
+autocmd BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> " ""<left>
 
-au BufWritePre *.py :%s/\t/    /e              " replace tabs with 4 spaces when SAVING file
-au BufWritePre *.py :%s/\s\+$//e               " remove trailing white space(s)
+autocmd BufWritePre *.py :%s/\t/    /e              " replace tabs with 4 spaces when SAVING file
+autocmd BufWritePre *.py :%s/\s\+$//e               " remove trailing white space(s)
 
 " ############# DOS Batch #############
-au FileType dosbatch inoremap<buffer> % %%<left>
+autocmd FileType dosbatch inoremap<buffer> % %%<left>
 
 " ############# HTML #############
-" au BufWritePre *.html :%s/\t/    /g            " replace tabs with 4 spaces when OPENING file
+" autocmd BufWritePre *.html :%s/\t/    /g            " replace tabs with 4 spaces when OPENING file
 
