@@ -57,6 +57,7 @@ set guifont=Cousine:h11
 
 " Show line and column numbers, line endings
 set number
+set relativenumber
 set ruler
 set cursorline
 set list
@@ -207,8 +208,6 @@ let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all'
 let g:tagbar_show_tag_linenumbers = 1
 
 " jump tags backward and forward
-nnoremap <silent> <C-k7> :TagbarOpen fj<CR><C-p>
-nnoremap <silent> <C-k9> :TagbarOpen fj<CR><C-n>
 nnoremap <silent> <C-k8> :TagbarToggle<CR>
 
 " create tags for AC2
@@ -293,10 +292,6 @@ nnoremap <silent> <A-Down>  :wincmd j<CR>
 nnoremap <silent> <A-Left>  :wincmd h<CR>
 nnoremap <silent> <A-Right> :wincmd l<CR>
 
-" new line without insert mode
-nnoremap o o<Esc>
-nnoremap O O<Esc> 
-
 " ############# leader mappings #############
 
 " remove trailing whitespaces
@@ -343,15 +338,12 @@ nnoremap <leader>f :windo diffoff<CR>
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 nnoremap <leader>dt :DiffOrig<CR>
 
-" Toggle Quickfix window
-"nnoremap <leader>f :QFix<CR>
-
 "###########################"
 " Search settings
 "###########################"
 
 "set hlsearch
-set incsearch                                                        " highlight search pattern
+set incsearch                                                        " highlight search pattern while typing
 set ignorecase                                                       " set incremental search
 set smartcase                                                        " activate case-insensitive search
 
