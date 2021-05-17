@@ -23,6 +23,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }                  " powerful 
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'                                            " show most recently used files at startup
 Plug 'markonm/traces.vim'                                            " show search/replace matches while typing
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -123,7 +124,7 @@ nnoremap <F6> :set cursorcolumn!<CR>
 " toggle relative line numbers
 nnoremap <F7> :set relativenumber!<CR>
 " search word under cursor
-nnoremap <F8> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
+nnoremap <F9> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
 
 " toggle code folding
 " inoremap <F9> <C-O>za
@@ -229,6 +230,18 @@ let g:tagbar_type_ac2_out = {
             \ }  
 "        \ 'p:Parameters',
 "        \ 'r:ATHLET Run Summary'
+
+"###########################"
+" Ale
+"###########################"
+
+let g:ale_linters = {'python': ['flake8']}
+
+" show warnings or errors in gutter
+let g:flake8_show_in_gutter=1
+
+" ignore unimportant warnings
+let g:flake8_ignore="E201,E221,E265,E271,E272,E303,E501,E701,W391"
 
 "###########################"
 " Personal
