@@ -1,0 +1,7 @@
+# Basic options
+
+--langdef=ac2_out
+--langmap=ac2_out:.out
+#--regex-ac2_out=/^\sPARAM(.*)$/\1/p,parameter/
+--regex-ac2_out=/^(.*)BEGINNING\sOF\sATHLET\sMAIN(.*)$/\2/m,mainedit/
+#--regex-ac2_out=/^(.*)RUN\sSUM(.*)$/\3/r,runsummary/
