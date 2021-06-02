@@ -1,5 +1,5 @@
-" delete all lines not starting with a or t
-%g!/.*\(|\|\s=\).*$/d
+" delete all lines not containing | (Triggers, Actions)
+%v/.*\(|\|\s=\).*$/d
 "
 " Matches
 " ----------------------------------------------

@@ -241,7 +241,7 @@ let g:ale_linters = {'python': ['flake8']}
 let g:flake8_show_in_gutter=1
 
 " ignore unimportant warnings
-let g:flake8_ignore="E201,E221,E265,E271,E272,E303,E501,E701,W391"
+"let g:flake8_ignore="E201,E221,E265,E271,E272,E303,E501,E701,W391"
 
 "###########################"
 " Personal
