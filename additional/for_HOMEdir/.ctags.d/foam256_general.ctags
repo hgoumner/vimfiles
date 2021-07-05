@@ -1,0 +1,8 @@
+# Basic options
+
+--langdef=foam256_general
+--regex-foam256_general=/^(vertices)$/\1/m,Mesh/
+--regex-foam256_general=/^(blocks)$/\1/m,Mesh/
+--regex-foam256_general=/^(edges)$/\1/m,Mesh/
+--regex-foam256_general=/^(boundary)$/\1/m,Mesh/
+--regex-foam256_general=/^(mergePatchPairs)$/\1/m,Mesh/

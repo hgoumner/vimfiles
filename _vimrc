@@ -24,6 +24,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'                                            " show most recently used files at startup
 Plug 'markonm/traces.vim'                                            " show search/replace matches while typing
 Plug 'dense-analysis/ale'
+Plug 'effi/vim-OpenFoam-syntax'
+Plug 'szw/vim-maximizer'
 
 call plug#end()
 
@@ -123,6 +125,9 @@ nnoremap <F5> :windo set invscrollbind<CR>
 nnoremap <F6> :set cursorcolumn!<CR>
 " toggle relative line numbers
 nnoremap <F7> :set relativenumber!<CR>
+" window maximizer
+let g:maximizer_default_mapping_key = '<F8>'
+nnoremap <silent><F8> :MaximizerToggle<CR>
 " search word under cursor
 nnoremap <F9> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
 
@@ -213,23 +218,32 @@ nnoremap <silent> <C-k8> :TagbarToggle<CR>
 
 " create tags for AC2
 let g:tagbar_type_ac2 = {
-            \ 'ctagstype' : 'ac2',
-            \ 'kinds' : [
-            \ 'c:Control Words',
-            \ 'k:Key Words'
-            \ ],
-            \ 'sort' : 0
-            \ }
+    \ 'ctagstype' : 'ac2',
+    \ 'kinds' : [
+    \ 'c:Control Words',
+    \ 'k:Key Words'
+    \ ],
+    \ 'sort' : 0
+    \ }
 
 let g:tagbar_type_ac2_out = {
-            \ 'ctagstype' : 'ac2_out',
-            \ 'kinds' : [
-            \ 'm:Main Edits'
-            \ ],
-            \ 'sort' : 1
-            \ }  
+    \ 'ctagstype' : 'ac2_out',
+    \ 'kinds' : [
+    \ 'm:Main Edits'
+    \ ],
+    \ 'sort' : 1
+    \ }  
 "        \ 'p:Parameters',
 "        \ 'r:ATHLET Run Summary'
+
+" create tags for openFOAM
+let g:tagbar_type_foam256_general = {
+    \ 'ctagstype' : 'foam256_general',
+    \ 'kinds' : [
+    \ 'm:Mesh',
+    \ ],
+    \ 'sort' : 0
+    \ }
 
 "###########################"
 " Ale
@@ -347,6 +361,9 @@ nnoremap <leader>n :enew<CR>
 nnoremap <leader>d :windo diffthis<CR>
 nnoremap <leader>f :windo diffoff<CR>
 
+" openfoam script
+nnoremap <leader>of :source $HOME/vimfiles/scripts/openfoam_case.vim<CR>
+
 " diff between current buffer state and state of file on drive (as loaded)
 command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 nnoremap <leader>dt :DiffOrig<CR>
@@ -401,6 +418,12 @@ autocmd BufWritePre *.py :%s/\s\+$//e               " remove trailing white spac
 
 " ############# DOS Batch #############
 autocmd FileType dosbatch inoremap<buffer> % %%<left>
+
+" ############# GMSH #############
+autocmd BufNewFile,BufRead,BufReadPost *.geo set
+            \ syntax=gmsh
+            \ encoding=utf-8
+            \ filetype=gmsh
 
 " ############# HTML #############
 " autocmd BufWritePre *.html :%s/\t/    /g            " replace tabs with 4 spaces when OPENING file
