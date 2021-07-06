@@ -313,12 +313,6 @@ nnoremap <C-k1> :bp<CR>
 nnoremap <C-k2> :buffers<CR>:buffer<Space>
 nnoremap <C-k3> :bn<CR>
 
-" navigate through windows
-nnoremap <silent> <A-Up>    :wincmd k<CR>
-nnoremap <silent> <A-Down>  :wincmd j<CR>
-nnoremap <silent> <A-Left>  :wincmd h<CR>
-nnoremap <silent> <A-Right> :wincmd l<CR>
-
 " ############# leader mappings #############
 
 " remove trailing whitespaces
