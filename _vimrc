@@ -24,7 +24,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'                                            " show most recently used files at startup
 Plug 'markonm/traces.vim'                                            " show search/replace matches while typing
 Plug 'dense-analysis/ale'
-Plug 'effi/vim-OpenFoam-syntax'
+Plug 'https://bitbucket.org/shor-ty/vimextensionopenfoam.git'
 Plug 'szw/vim-maximizer'
 
 call plug#end()
@@ -256,6 +256,12 @@ let g:flake8_show_in_gutter=1
 
 " ignore unimportant warnings
 "let g:flake8_ignore="E201,E221,E265,E271,E272,E303,E501,E701,W391"
+"
+"###########################"
+" OpenFOAM syntax
+"###########################"
+
+let g:foam256_use_own_colors=1
 
 "###########################"
 " Personal
