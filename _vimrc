@@ -78,7 +78,7 @@ set encoding=utf-8
 set tabstop=4 shiftwidth=4 expandtab
 
 " allow writing anywhere in buffer
-set virtualedit=all
+set virtualedit=block
 
 " activate backspace key
 set backspace=2
@@ -113,7 +113,7 @@ set shortmess-=S
 " toggle File Explorer
 nnoremap <F1> :NERDTreeToggle<CR>
 " toggle wrap
-nnoremap <silent><expr> <F2> ':set wrap! go'.'-+'[&wrap]."=b\r"
+nnoremap <silent><expr> <F2> ':windo set wrap! go'.'-+'[&wrap]."=b\r"
 " map split view
 " vertical
 nnoremap <F3> <C-w><C-v><CR>
@@ -335,10 +335,10 @@ nnoremap <leader>cd :%s:\,:.:g<CR>
 nnoremap <leader>ts :%s:\t:    :g<CR>
 
 " open new buffer
-nnoremap <leader>b<left>   :leftabove  vnew<CR>
-nnoremap <leader>b<right>  :rightbelow vnew<CR>
-nnoremap <leader>b<up>     :leftabove  new<CR>
-nnoremap <leader>b<down>   :rightbelow new<CR>
+nnoremap <leader>bh :leftabove  vnew<CR>
+nnoremap <leader>bl :rightbelow vnew<CR>
+nnoremap <leader>bk :leftabove  new<CR>
+nnoremap <leader>bj :rightbelow new<CR>
 
 " set equal buffer size
 nnoremap <leader>0 <C-w>=<CR>
