@@ -85,7 +85,7 @@ set backspace=2
 
 " clipboard and swapfile settings
 set clipboard=unnamed                          " < copy/paste to register * (system's copy/paste buffer)
-set swapfile
+set noswapfile
 set dir=~/tmp                                  " store swapfiles in tmp directory
 
 " clear and limit viminfo entries
@@ -307,6 +307,16 @@ inoremap <silent> <A-k2>   <Esc>:m .+1<CR>==gi
 inoremap <silent> <A-k8>   <Esc>:m .-2<CR>==gi
 vnoremap <silent> <A-k2>        :m '>+1<CR>gv=gv
 vnoremap <silent> <A-k8>        :m '<-2<CR>gv=gv
+
+" navigate in insert and command mode
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+cnoremap <C-h> <Left>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-l> <Right>
 
 " comment out lines
 source $HOME/vimfiles/additional/vcomments.vim
