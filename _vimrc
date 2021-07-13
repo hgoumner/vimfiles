@@ -274,8 +274,8 @@ nnoremap <C-a> ggVG
 noremap <M-LeftMouse> <LeftMouse><Esc><C-V>
 
 " enter search and replace
-noremap ,, :%s:::g<Left><Left><Left>
-noremap ,. :%s:\<<C-r><C-w>\>:<C-r><C-w>:gI<Left><Left><Left>
+noremap ,, :%s///g<Left><Left><Left>
+noremap ,. :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " toggle search highlighting
 nnoremap <C-k0> :set hlsearch!<CR>
@@ -301,12 +301,12 @@ inoremap [ []<left>
 inoremap { {}<left>
 
 " move lines
-nnoremap <silent> <A-k2>        :m .+1<CR>==
-nnoremap <silent> <A-k8>        :m .-2<CR>==
-inoremap <silent> <A-k2>   <Esc>:m .+1<CR>==gi
-inoremap <silent> <A-k8>   <Esc>:m .-2<CR>==gi
-vnoremap <silent> <A-k2>        :m '>+1<CR>gv=gv
-vnoremap <silent> <A-k8>        :m '<-2<CR>gv=gv
+nnoremap <silent> <A-j>        :m .+1<CR>==
+nnoremap <silent> <A-k>        :m .-2<CR>==
+inoremap <silent> <A-j>   <Esc>:m .+1<CR>==gi
+inoremap <silent> <A-k>   <Esc>:m .-2<CR>==gi
+vnoremap <silent> <A-j>        :m '>+1<CR>gv=gv
+vnoremap <silent> <A-k>        :m '<-2<CR>gv=gv
 
 " navigate in insert and command mode
 inoremap <C-h> <Left>
@@ -332,17 +332,20 @@ nnoremap <C-k3> :bn<CR>
 " ############# leader mappings #############
 
 " remove trailing whitespaces
-nnoremap <leader>tw :%s/\s*$//<CR>
+nnoremap <leader>tw :%s/\s\+$//e<CR>
+
+" remove leading whitespaces
+nnoremap <leader>lw :%s/^\s\+//e<CR>
 
 " remove empty lines
-nnoremap <leader>. :g:^\h*$:d<CR>
+nnoremap <leader>. :g/^\h*$/d<CR>
 
 " replace comma with dot or dot with comma
-nnoremap <leader>dc :%s:\.:,:g<CR>
-nnoremap <leader>cd :%s:\,:.:g<CR>
+nnoremap <leader>dc :%s/\./,/g<CR>
+nnoremap <leader>cd :%s/\,/./g<CR>
 
 " replace tabs with spaces
-nnoremap <leader>ts :%s:\t:    :g<CR>
+nnoremap <leader>ts :%s/\t/    /g<CR>
 
 " open new buffer
 nnoremap <leader>bh :leftabove  vnew<CR>
