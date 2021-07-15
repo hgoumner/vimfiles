@@ -293,7 +293,7 @@ vnoremap <Del> "_d
 nnoremap <C-i> gg=G<CR>
 
 " word completion with tab
-inoremap <Tab> <C-n>
+" inoremap <Tab> <C-n>
 
 " auto-close
 inoremap ( ()<left>
