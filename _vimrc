@@ -406,8 +406,8 @@ autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat se
             \ encoding=utf-8
             \ filetype=ac2
 
-autocmd BufWritePre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :%s/\t/    /e              " replace tabs with 4 spaces when SAVING file
-autocmd BufWritePre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :%s/\s\+$//e               " remove trailing white space(s)
+" autocmd BuReadPre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :retab          " replace tabs with spaces 
+" autocmd BufWritePre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :%s/\s\+$//e  " remove trailing white space(s)
 
 " Set ac2_out as language for *.out file
 autocmd BufNewFile,BufRead,BufReadPost *.out set
@@ -426,8 +426,8 @@ autocmd BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst set
 autocmd BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> ' ''<left>
 autocmd BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> " ""<left>
 
-autocmd BufWritePre *.py :%s/\t/    /e              " replace tabs with 4 spaces when SAVING file
-autocmd BufWritePre *.py :%s/\s\+$//e               " remove trailing white space(s)
+" autocmd BufReadPre *.py :retab                      " replace tabs with spaces
+" autocmd BufWritePre *.py :%s/\s\+$//e               " remove trailing white space(s)
 
 " ############# DOS Batch #############
 autocmd FileType dosbatch inoremap<buffer> % %%<left>
@@ -439,5 +439,22 @@ autocmd BufNewFile,BufRead,BufReadPost *.geo set
             \ filetype=gmsh
 
 " ############# HTML #############
-" autocmd BufWritePre *.html :%s/\t/    /g            " replace tabs with 4 spaces when OPENING file
+" autocmd BufWritePre *.html :retab               " replace tabs with spaces
+
+" ############# C++ #############
+"autocmd BufNewFile,BufRead,BufReadPost *.cpp set
+"            \ syntax=cpp
+"            \ encoding=utf-8
+"            \ filetype=cpp
+"
+
+" autocmd BufReadPre *.cpp :retab                       " replace tabs with spaces
+
+" ############# OpenFOAM #############
+
+" autocmd FileType foam256_general :retab
+
+" ############# All files #############
+autocmd BufReadPre * :retab
+autocmd BufReadPre * exec "normal gg=G"
 
