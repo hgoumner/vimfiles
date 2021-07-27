@@ -163,8 +163,9 @@ xnoremap <leader>00 :EasyAlign =<CR>
 "###########################"
 
 " preview window settings
-let s:is_win = 1
-command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, {'options': [ '--info=inline', '--preview', 'bat {}']}, <bang>0)
+"if s:is_win
+"    command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, {'options': [ '--info=inline', '--preview', 'bat {}']}, <bang>0)
+"endif
 
 " Find files with fzf
 nnoremap <leader>p :Files $HOME<CR>
