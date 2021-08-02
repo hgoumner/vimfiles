@@ -316,14 +316,14 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 cnoremap <C-h> <Left>
 cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
 cnoremap <C-l> <Right>
+cnoremap <C-k> <Up>
 
 " comment out lines
 source $HOME/vimfiles/additional/vcomments.vim
-nnoremap <A-q> :call ToggleComment()<CR>
-nnoremap <A-,> :call Comment()<CR>
-nnoremap <A-.> :call UnComment()<CR>
+xnoremap <A-q> :call ToggleComment()<CR>
+xnoremap <A-,> :call Comment()<CR>
+xnoremap <A-.> :call UnComment()<CR>
 
 " toggle through buffers
 nnoremap <C-k1> :bp<CR>
@@ -404,31 +404,21 @@ inoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\
 " Set ac2 as language for input file
 autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat set
             \ syntax=ac2
-            \ encoding=utf-8
             \ filetype=ac2
-
-" autocmd BuReadPre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :retab          " replace tabs with spaces 
-" autocmd BufWritePre *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat :%s/\s\+$//e  " remove trailing white space(s)
 
 " Set ac2_out as language for *.out file
 autocmd BufNewFile,BufRead,BufReadPost *.out set
             \ syntax=ac2
-            \ encoding=utf-8
             \ filetype=ac2_out 
-
 
 " ############# Python #############
 
 autocmd BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst set
             \ syntax=python
-            \ encoding=utf-8
             \ filetype=python
 
 autocmd BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> ' ''<left>
 autocmd BufNewFile,BufRead,BufReadPost *.py,*.vsz,*.vst inoremap<buffer> " ""<left>
-
-" autocmd BufReadPre *.py :retab                      " replace tabs with spaces
-" autocmd BufWritePre *.py :%s/\s\+$//e               " remove trailing white space(s)
 
 " ############# DOS Batch #############
 autocmd FileType dosbatch inoremap<buffer> % %%<left>
@@ -436,26 +426,19 @@ autocmd FileType dosbatch inoremap<buffer> % %%<left>
 " ############# GMSH #############
 autocmd BufNewFile,BufRead,BufReadPost *.geo set
             \ syntax=gmsh
-            \ encoding=utf-8
             \ filetype=gmsh
 
 " ############# HTML #############
-" autocmd BufWritePre *.html :retab               " replace tabs with spaces
 
 " ############# C++ #############
 "autocmd BufNewFile,BufRead,BufReadPost *.cpp set
 "            \ syntax=cpp
-"            \ encoding=utf-8
 "            \ filetype=cpp
 "
-
-" autocmd BufReadPre *.cpp :retab                       " replace tabs with spaces
-
 " ############# OpenFOAM #############
-
-" autocmd FileType foam256_general :retab
 
 " ############# All files #############
 autocmd BufReadPre * :retab
 autocmd BufReadPre * exec "normal gg=G"
+autocmd BufRead * set encoding=utf-8
 
