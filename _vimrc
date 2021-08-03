@@ -332,6 +332,9 @@ nnoremap <C-k3> :bn<CR>
 
 " ############# leader mappings #############
 
+" retab
+nnoremap <leader>t :retab<CR>
+
 " remove trailing whitespaces
 nnoremap <leader>tw :%s/\s\+$//e<CR>
 
@@ -379,7 +382,7 @@ nnoremap <leader>f :windo diffoff<CR>
 nnoremap <leader>of :source $HOME/vimfiles/scripts/openfoam_case.vim<CR>
 
 " diff between current buffer state and state of file on drive (as loaded)
-command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
+command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 nnoremap <leader>dt :DiffOrig<CR>
 
 "###########################"
@@ -438,7 +441,7 @@ autocmd BufNewFile,BufRead,BufReadPost *.geo set
 " ############# OpenFOAM #############
 
 " ############# All files #############
-autocmd BufReadPre * :retab
-autocmd BufReadPre * exec "normal gg=G"
-autocmd BufRead * set encoding=utf-8
+autocmd BufReadPre * silent! :retab
+autocmd BufReadPre * silent! exec "normal gg=G"
+autocmd BufRead * silent! set encoding=utf-8
 
