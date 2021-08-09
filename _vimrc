@@ -26,6 +26,7 @@ Plug 'markonm/traces.vim'                                            " show sear
 Plug 'dense-analysis/ale'
 Plug 'https://bitbucket.org/shor-ty/vimextensionopenfoam.git'
 Plug 'szw/vim-maximizer'
+Plug 'lark-parser/vim-lark-syntax'
 
 call plug#end()
 
