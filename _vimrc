@@ -223,7 +223,6 @@ let g:tagbar_type_ac2 = {
     \ 'ctagstype' : 'ac2',
     \ 'kinds' : [
     \ 'c:Control Words',
-    \ 'k:Key Words'
     \ ],
     \ 'sort' : 0
     \ }
@@ -322,9 +321,9 @@ cnoremap <C-k> <Up>
 
 " comment out lines
 source $HOME/vimfiles/additional/vcomments.vim
-xnoremap <A-q> :call ToggleComment()<CR>
-xnoremap <A-,> :call Comment()<CR>
-xnoremap <A-.> :call UnComment()<CR>
+noremap <A-q> :call ToggleComment()<CR>
+noremap <A-,> :call Comment()<CR>
+noremap <A-.> :call UnComment()<CR>
 
 " toggle through buffers
 nnoremap <C-k1> :bp<CR>

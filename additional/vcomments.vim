@@ -24,11 +24,11 @@ function! ToggleComment()
         else
             silent s/^["]//g
         endif
-    elseif ext == 'inp' || 'in' || 'inp_exp' || 'log'
+    elseif ext == 'inp' || 'in' || 'inp_exp' || 'log' || &filetype == 'ac2'
         if matchstr(getline(line(".")),'^\s*@.*$') == ''
-            silent s/^/@/g
+            silent s/^/@ /g
         else
-            silent s/^[@]//g
+            silent s/^@ \?//g
         endif
     endif
 endfunction
@@ -41,8 +41,8 @@ function! Comment()
         silent s/^/\/\//g
     elseif ext == 'vim' || &filetype == 'vim'
         silent s/^/\"/g
-    elseif ext == 'inp' || 'in' || 'inp_exp' || 'log'
-        silent s/^/@/g
+    elseif ext == 'inp' || 'in' || 'inp_exp' || 'log' || &filetype == 'ac2'
+        silent s/^/@ /g
     endif
 endfunction
 
@@ -54,7 +54,7 @@ function! UnComment()
         silent s/^\/\///g
     elseif ext == 'vim' || &filetype == 'vim'
         silent s/^\"//g
-    elseif ext == 'inp' || 'in' || 'inp_exp' || 'log'
-        silent s/^[@]//g
+    elseif ext == 'inp' || 'in' || 'inp_exp' || 'log' || &filetype == 'ac2'
+        silent s/^@ \?//g
     endif
 endfunction

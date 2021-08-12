@@ -18,7 +18,7 @@ syn match ac2PW "^-----.*$"
 syn match ac2Comment "@.*$"
 
 " Highlight Links
-" ---------------------------------------------------------------------
+" ----------------------------------------------
 hi link ac2CW Statement
 hi link ac2KW Function
 hi link ac2SW Debug
@@ -30,22 +30,6 @@ let b:current_syntax = "ac2"
 let &cpoptions = s:cpo_save
 unlet s:cpo_save
 
-"" fold control words
-"syn region vimFoldControl
-"      \ start="^C----.*$"
-"      \ end="^C----"
-"      \ transparent fold
-"      \ keepend extend
-"
-"" fold key words
-"syn region vimFoldKey
-"      \ start="^K----.*$"
-"      \ end="^K----"
-"      \ transparent fold
-"      \ keepend extend
-" 
-"syn sync fromstart
-"set foldmethod=syntax
-"set foldlevelstart=200
-"set foldcolumn=0
-"
+setlocal complete+=k
+setlocal dictionary+=$HOME/vimfiles/syntax/ac2_words.txt
+setlocal iskeyword+=-
