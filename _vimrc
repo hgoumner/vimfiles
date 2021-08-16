@@ -27,6 +27,8 @@ Plug 'dense-analysis/ale'
 Plug 'https://bitbucket.org/shor-ty/vimextensionopenfoam.git'
 Plug 'szw/vim-maximizer'
 Plug 'lark-parser/vim-lark-syntax'
+Plug 'kana/vim-textobj-user'
+Plug 'bps/vim-textobj-python'
 
 call plug#end()
 
