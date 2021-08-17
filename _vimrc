@@ -248,6 +248,16 @@ let g:tagbar_type_foam256_general = {
     \ 'sort' : 0
     \ }
 
+" RELAP5 tags
+let g:tagbar_type_relap5 = {
+    \ 'ctagstype' : 'relap5',
+    \ 'kinds' : [
+    \ 'c:Control words',
+    \ 'k:Key words',
+    \ ],
+    \ 'sort' : 0
+    \ }
+
 "###########################"
 " Ale
 "###########################"
@@ -442,7 +452,13 @@ autocmd BufNewFile,BufRead,BufReadPost *.geo set
 "
 " ############# OpenFOAM #############
 
+" ############# RELAP5 #############
+autocmd BufNewFile,BufRead,BufReadPost *.rl5 set
+            \ syntax=relap5
+            \ filetype=relap5
+
 " ############# All files #############
+"autocmd BufReadPre * set nowrap
 autocmd BufReadPre * silent! :retab
 autocmd BufReadPre * silent! exec "normal gg=G"
 autocmd BufRead * silent! set encoding=utf-8
