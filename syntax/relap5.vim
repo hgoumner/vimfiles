@@ -13,7 +13,7 @@ set cpoptions&vim
 " ----------------------------------------------
 syn match rl5CW "^\$ .*$"
 syn match rl5KW "^\*[cC]rd.*$"
-syn match rl5Comment "\*[^cC].*$"
+syn match rl5Comment "^\*[^cC]*$"
 
 " Highlight Links
 " ----------------------------------------------
