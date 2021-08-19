@@ -379,6 +379,7 @@ nnoremap <leader>bv :vert sball<CR>
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>e :browse confirm saveas<CR>
 nnoremap <leader>q :q!<CR>
+nnoremap <leader>x :x<CR>
 
 " open new file with leader
 nnoremap <leader>o :browse confirm e<CR>
