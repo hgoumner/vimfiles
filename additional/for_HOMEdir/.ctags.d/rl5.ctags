@@ -1,0 +1,6 @@
+# Basic options
+
+--langdef=relap5
+--langmap=relap5:.rl5
+--regex-relap5=/^\$[ ]+(.*)/\1/c,controlword/
+--regex-relap5=/^\*[cC]rd(.*)/\1/k,keyword/

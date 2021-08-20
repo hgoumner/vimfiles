@@ -1,5 +1,5 @@
 " Vim syntax file
-" Language: AC2
+" Language: RELAP5
 " Maintainer: Hristo Goumnerov
 
 if exists("b:current_syntax")
@@ -11,21 +11,17 @@ set cpoptions&vim
 
 " Matches
 " ----------------------------------------------
-syn match ac2CW "^C----.*$"
-syn match ac2KW "^K----.*$"
-syn match ac2SW "^S----.*$"
-syn match ac2PW "^-----.*$"
-syn match ac2Comment "@.*$"
+syn match rl5CW "^\$ .*$"
+syn match rl5KW "^\*[cC]rd.*$"
+syn match rl5Comment "^\*[^cC].*$\|^\*$"
 
 " Highlight Links
 " ----------------------------------------------
-hi link ac2CW Statement
-hi link ac2KW Function
-hi link ac2SW Debug
-hi link ac2PW Identifier
-hi link ac2Comment Comment
+hi link rl5CW Statement
+hi link rl5KW Function
+hi link rl5Comment Comment
 
-let b:current_syntax = "ac2"
+let b:current_syntax = "relap5"
 
 let &cpoptions = s:cpo_save
 unlet s:cpo_save
