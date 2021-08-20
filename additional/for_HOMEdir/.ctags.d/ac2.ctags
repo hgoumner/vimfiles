@@ -4,3 +4,5 @@
 --langmap=ac2:.iix.inp.in.inp_EXP.log.dat
 --regex-ac2=/^C---- (.*)/\1/c,controlword/
 --regex-ac2=/^K---- (.*)/\1/k,keyword/
+--regex-ac2=/^----- (.*)/\1/p,pseudokeyword/
+--regex-ac2=/^S---- (.*)/\1/s,gcsmkeyword/

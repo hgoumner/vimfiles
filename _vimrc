@@ -152,10 +152,10 @@ nnoremap <F12> :e $MYVIMRC<CR>
 "###########################"
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xnoremap ga :EasyAlign 
+xnoremap ga :EasyAlign
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nnoremap ga :EasyAlign 
+nnoremap ga :EasyAlign
 
 " align to import statement or equal sign
 xnoremap <leader>ii :EasyAlign /import/<CR>
@@ -196,16 +196,16 @@ let g:fzf_layout = { 'window': '10new' }
 let g:fzf_layout = { 'down': '40%' }
 
 function! s:build_quickfix_list(lines)
-  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
-  cc
+    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+    copen
+    cc
 endfunction
 
 let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+            \ 'ctrl-q': function('s:build_quickfix_list'),
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 " let $FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all'
@@ -222,41 +222,44 @@ nnoremap <silent> <C-k8> :TagbarToggle<CR>
 
 " create tags for AC2
 let g:tagbar_type_ac2 = {
-    \ 'ctagstype' : 'ac2',
-    \ 'kinds' : [
-    \ 'c:Control Words',
-    \ ],
-    \ 'sort' : 0
-    \ }
+            \ 'ctagstype' : 'ac2',
+            \ 'kinds' : [
+            \ 'c:Control section',
+            \ 'k:Key Words:1:0',
+            \ 'p:Pseudo Key Words:1:0',
+            \ 's:GCSM Signals:1:0',
+            \ ],
+            \ 'sort' : 0
+            \ }
 
 let g:tagbar_type_ac2_out = {
-    \ 'ctagstype' : 'ac2_out',
-    \ 'kinds' : [
-    \ 'm:Main Edits'
-    \ ],
-    \ 'sort' : 1
-    \ }  
+            \ 'ctagstype' : 'ac2_out',
+            \ 'kinds' : [
+            \ 'm:Main Edits'
+            \ ],
+            \ 'sort' : 1
+            \ }
 "        \ 'p:Parameters',
 "        \ 'r:ATHLET Run Summary'
 
 " create tags for openFOAM
 let g:tagbar_type_foam256_general = {
-    \ 'ctagstype' : 'foam256_general',
-    \ 'kinds' : [
-    \ 'm:Mesh',
-    \ ],
-    \ 'sort' : 0
-    \ }
+            \ 'ctagstype' : 'foam256_general',
+            \ 'kinds' : [
+            \ 'm:Mesh',
+            \ ],
+            \ 'sort' : 0
+            \ }
 
 " RELAP5 tags
 let g:tagbar_type_relap5 = {
-    \ 'ctagstype' : 'relap5',
-    \ 'kinds' : [
-    \ 'c:Control words',
-    \ 'k:Key words',
-    \ ],
-    \ 'sort' : 0
-    \ }
+            \ 'ctagstype' : 'relap5',
+            \ 'kinds' : [
+            \ 'c:Control words',
+            \ 'k:Key words',
+            \ ],
+            \ 'sort' : 0
+            \ }
 
 "###########################"
 " Ale
@@ -425,7 +428,7 @@ autocmd BufNewFile,BufRead,BufReadPost *.iix,*.inp,*.in,*.inp_EXP,*.log,*.dat se
 " Set ac2_out as language for *.out file
 autocmd BufNewFile,BufRead,BufReadPost *.out set
             \ syntax=ac2
-            \ filetype=ac2_out 
+            \ filetype=ac2_out
 
 " ############# Python #############
 
