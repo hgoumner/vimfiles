@@ -312,9 +312,9 @@ nnoremap <C-i> gg=G<CR>
 " inoremap <Tab> <C-n>
 
 " auto-close
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
+"inoremap ( ()<left>
+"inoremap [ []<left>
+"inoremap { {}<left>
 
 " move lines
 nnoremap <silent> <A-j>        :m .+1<CR>==
