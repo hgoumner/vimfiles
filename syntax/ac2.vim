@@ -33,3 +33,28 @@ unlet s:cpo_save
 setlocal complete+=k
 setlocal dictionary+=$HOME/vimfiles/syntax/ac2_words.txt
 setlocal iskeyword+=-
+
+function! Fold()
+    let l:cur_line = getline(v:lnum)
+    let l:next_line = getline(v:lnum+1)
+    if l:cur_line =~# '^C-'
+        return '>' . (matchend(l:cur_line, '^C-') - 1)
+    else
+        if l:cur_line ==# '' && (matchend(l:next_line, '^C-') - 1) == 1
+            return 0
+        else
+            return '='
+        endif
+    endif
+endfunction
+
+"function! FoldText()
+"    let line = getline(v:foldstart)
+"    let sub = substitute(line, '.*\<\(\w\+\)(.*).*', '\1(...)', 'g')
+"    return '+-- ' . sub . ' (' . (v:foldend - v:foldstart + 1) . ' lines)'
+"endfunction
+
+setlocal foldmethod=expr
+setlocal foldexpr=Fold()
+"setlocal foldtext=FoldText()
+"setlocal fillchars-=fold:-

@@ -6,6 +6,12 @@ function! ToggleComment()
         else
             silent s/^REM //
         endif
+    elseif ext == 'c' || ext == 'cpp' || ext == 'lark'
+        if matchstr(getline(line(".")),'^\s*\/\/.*$') == ''
+            silent s/^/\/\//g
+        else
+            silent s/^\/\///g
+        endif
     elseif ext == 'py' || ext == 'sh'
         if matchstr(getline(line(".")),'^\s*#.*$') == ''
             silent s/^/\#/g

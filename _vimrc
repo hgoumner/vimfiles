@@ -29,6 +29,7 @@ Plug 'szw/vim-maximizer'
 Plug 'lark-parser/vim-lark-syntax'
 Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -312,9 +313,9 @@ nnoremap <C-i> gg=G<CR>
 " inoremap <Tab> <C-n>
 
 " auto-close
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
+"inoremap ( ()<left>
+"inoremap [ []<left>
+"inoremap { {}<left>
 
 " move lines
 nnoremap <silent> <A-j>        :m .+1<CR>==
@@ -337,6 +338,7 @@ cnoremap <C-k> <Up>
 " comment out lines
 source $HOME/vimfiles/additional/vcomments.vim
 noremap <A-q> :call ToggleComment()<CR>
+noremap <leader>k :call ToggleComment()<CR>
 noremap <A-,> :call Comment()<CR>
 noremap <A-.> :call UnComment()<CR>
 
