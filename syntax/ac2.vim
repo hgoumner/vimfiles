@@ -40,7 +40,7 @@ function! Fold()
     if l:cur_line =~# '^C-'
         return '>' . (matchend(l:cur_line, '^C-') - 1)
     else
-        if l:cur_line ==# '' && (matchend(l:next_line, '^C-') - 1) == 1
+        if l:cur_line ==# '' && (matchend(l:next_line, '^C-') - 0) == 1
             return 0
         else
             return '='

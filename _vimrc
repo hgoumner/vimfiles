@@ -136,10 +136,12 @@ nnoremap <silent><F8> :MaximizerToggle<CR>
 nnoremap <F9> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
 
 " toggle code folding
-" inoremap <F9> <C-O>za
-" nnoremap <F9> za
-" onoremap <F9> <C-C>za
-" vnoremap <F9> zf"
+ inoremap <F10> <C-O>za
+ nnoremap <F10> za
+ inoremap <F11> <C-O>zA
+ nnoremap <F11> zA
+" onoremap <F10> <C-C>za
+" vnoremap <F10> zf"
 
 " edit _vimrc file
 nnoremap <F12> :e $MYVIMRC<CR>
