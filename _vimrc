@@ -138,8 +138,8 @@ nnoremap <F9> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
 " toggle code folding
  inoremap <F10> <C-O>za
  nnoremap <F10> za
- inoremap <F11> <C-O>zA
- nnoremap <F11> zA
+ inoremap <F11> <C-O>zM
+ nnoremap <F11> zM
 " onoremap <F10> <C-C>za
 " vnoremap <F10> zf"
 
