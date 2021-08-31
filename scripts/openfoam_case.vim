@@ -15,7 +15,7 @@ windo set nowrap
 windo %s/\t/    /ge
 
 " open files containing system and discretization settings
-let psys = join([curpath, 'system'], '\')
+let psys = join([curpath, 'system'], '/')
 cd `=psys`
 tabnew
 arg controlDict
