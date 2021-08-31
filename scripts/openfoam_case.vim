@@ -1,13 +1,18 @@
 
+let curpath = getcwd()
+
 " open files containing boundary and initial condition settings
-arg 0/*
+let p0 = join([curpath, '0'], '\')
+cd `=p0`
+arg `dir /a-d /b`
 sall
 windo wincmd H
 windo set nowrap
 windo %s/\t/    /ge
 
 " open files containing system and discretization settings
-cd ../system
+let psys = join([curpath, 'system'], '\')
+cd `=psys`
 tabnew
 arg controlDict
 argadd fvSchemes
@@ -24,9 +29,10 @@ windo set nowrap
 windo %s/\t/    /ge
 
 " open files containing material and other properties
-cd ..
+let pcon = join([curpath, 'constant'], '\')
+cd `=pcon`
 tabnew
-arg constant/*
+arg `dir /a-d /b`
 sall
 windo wincmd H
 windo set nowrap
