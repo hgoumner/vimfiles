@@ -351,59 +351,63 @@ nnoremap <C-k3> :bn<CR>
 
 " ############# leader mappings #############
 
-" retab
-nnoremap <leader>t :retab<CR>
-
-" remove trailing whitespaces
-nnoremap <leader>tw :%s/\s\+$//e<CR>
-
-" remove leading whitespaces
-nnoremap <leader>lw :%s/^\s\+//e<CR>
-
-" remove empty lines
-nnoremap <leader>. :g/^\h*$/d<CR>
-
-" replace comma with dot or dot with comma
-nnoremap <leader>dc :%s/\./,/g<CR>
-nnoremap <leader>cd :%s/\,/./g<CR>
-
-" replace tabs with spaces
-nnoremap <leader>ts :%s/\t/    /g<CR>
-
 " open new buffer
 nnoremap <leader>bh :leftabove  vnew<CR>
 nnoremap <leader>bl :rightbelow vnew<CR>
 nnoremap <leader>bk :leftabove  new<CR>
 nnoremap <leader>bj :rightbelow new<CR>
 
-" set equal buffer size
-nnoremap <leader>0 <C-w>=<CR>
-
 " show all open buffers in vertical split
 nnoremap <leader>bv :vert sball<CR>
 
-" save and close file with leader
-nnoremap <leader>w :w!<CR>
-nnoremap <leader>e :browse confirm saveas<CR>
-nnoremap <leader>q :q!<CR>
-nnoremap <leader>x :x<CR>
+" compile and run C code
+nnoremap <leader>c :!gcc % -o %< && ./%< <CR>
 
-" open new file with leader
-nnoremap <leader>o :browse confirm e<CR>
-
-" create new file with leader
-nnoremap <leader>n :enew<CR>
+" replace comma with dot or dot with comma
+nnoremap <leader>cd :%s/\,/./g<CR>
+nnoremap <leader>dc :%s/\./,/g<CR>
 
 " diff of currently opened buffers
 nnoremap <leader>d :windo diffthis<CR>
 nnoremap <leader>f :windo diffoff<CR>
 
-" openfoam script
-nnoremap <leader>of :source $HOME/vimfiles/scripts/openfoam_case.vim<CR>
-
 " diff between current buffer state and state of file on drive (as loaded)
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 nnoremap <leader>dt :DiffOrig<CR>
+
+" remove leading whitespaces
+nnoremap <leader>lw :%s/^\s\+//e<CR>
+
+" create new file with leader
+nnoremap <leader>n :enew<CR>
+
+" open new file with leader
+nnoremap <leader>o :browse confirm e<CR>
+
+" openfoam script
+nnoremap <leader>of :source $HOME/vimfiles/scripts/openfoam_case.vim<CR>
+
+" retab
+nnoremap <leader>t :retab<CR>
+
+" remove trailing whitespaces
+nnoremap <leader>tw :%s/\s\+$//e<CR>
+
+
+" remove empty lines
+nnoremap <leader>. :g/^\h*$/d<CR>
+
+" replace tabs with spaces
+nnoremap <leader>ts :%s/\t/    /g<CR>
+
+" set equal buffer size
+nnoremap <leader>0 <C-w>=<CR>
+
+" save and close file with leader
+nnoremap <leader>e :browse confirm saveas<CR>
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>w :w!<CR>
+nnoremap <leader>x :x<CR>
 
 "###########################"
 " Search settings
