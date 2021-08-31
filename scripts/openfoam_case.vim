@@ -2,9 +2,13 @@
 let curpath = getcwd()
 
 " open files containing boundary and initial condition settings
-let p0 = join([curpath, '0'], '\')
+let p0 = join([curpath, '0'], '/')
 cd `=p0`
-arg `dir /a-d /b`
+if has("unix")
+    arg `find . -maxdepth 1 -type f`
+else
+    arg `dir /a-d /b`
+endif
 sall
 windo wincmd H
 windo set nowrap
@@ -29,10 +33,14 @@ windo set nowrap
 windo %s/\t/    /ge
 
 " open files containing material and other properties
-let pcon = join([curpath, 'constant'], '\')
+let pcon = join([curpath, 'constant'], '/')
 cd `=pcon`
 tabnew
-arg `dir /a-d /b`
+if has("unix")
+    arg `find . -maxdepth 1 -type f`
+else
+    arg `dir /a-d /b`
+endif
 sall
 windo wincmd H
 windo set nowrap
