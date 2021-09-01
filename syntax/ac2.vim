@@ -56,6 +56,6 @@ endfunction
 
 setlocal foldmethod=expr
 setlocal foldexpr=Fold()
-setlocal foldlevel=0
+setlocal foldlevel=1
 "setlocal foldtext=FoldText()
 "setlocal fillchars-=fold:-
