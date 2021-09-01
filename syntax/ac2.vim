@@ -3,7 +3,7 @@
 " Maintainer: Hristo Goumnerov
 
 if exists("b:current_syntax")
-  finish
+    finish
 endif
 
 let s:cpo_save = &cpoptions
@@ -56,5 +56,6 @@ endfunction
 
 setlocal foldmethod=expr
 setlocal foldexpr=Fold()
+setlocal foldlevel=0
 "setlocal foldtext=FoldText()
 "setlocal fillchars-=fold:-
