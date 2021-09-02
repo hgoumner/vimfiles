@@ -221,7 +221,7 @@ let $FZF_DEFAULT_OPTS = '-e --bind ctrl-a:select-all'
 let g:tagbar_show_tag_linenumbers = 1
 
 " jump tags backward and forward
-nnoremap <silent> <C-k8> :TagbarToggle<CR>
+nnoremap <silent> <leader>8 :TagbarToggle<CR>
 
 " create tags for AC2
 let g:tagbar_type_ac2 = {
