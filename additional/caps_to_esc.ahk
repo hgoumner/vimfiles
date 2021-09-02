@@ -10,3 +10,7 @@ return
 #IfWinActive,ahk_exe WindowsTerminal.exe
    CAPSLOCK::ESC
 return
+
+#IfWinActive,ahk_exe atom.exe
+   CAPSLOCK::ESC
+return
