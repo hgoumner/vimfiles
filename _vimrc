@@ -136,10 +136,10 @@ nnoremap <silent><F8> :MaximizerToggle<CR>
 nnoremap <F9> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
 
 " toggle code folding
- inoremap <F10> <C-O>za
- nnoremap <F10> za
- inoremap <F11> <C-O>zM
- nnoremap <F11> zM
+inoremap <F10> <C-O>za
+nnoremap <F10> za
+inoremap <F11> <C-O>zM
+nnoremap <F11> zM
 " onoremap <F10> <C-C>za
 " vnoremap <F10> zf"
 
@@ -311,6 +311,14 @@ vnoremap <Del> "_d
 " fix indentation of complete file
 nnoremap <C-i> gg=G<CR>
 
+" keep search matches and line joinging in screen center
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap J mzJ`z
+
+" yank to end of line
+nnoremap Y y$
+
 " word completion with tab
 " inoremap <Tab> <C-n>
 
@@ -361,7 +369,7 @@ nnoremap <leader>bj :rightbelow new<CR>
 nnoremap <leader>bv :vert sball<CR>
 
 " compile and run C code
-nnoremap <leader>c :!gcc % -o %< && ./%< <CR>
+nnoremap <leader>c :!gcc % -Wall -o %< && ./%< <CR>
 
 " replace comma with dot or dot with comma
 nnoremap <leader>cd :%s/\,/./g<CR>
