@@ -311,9 +311,11 @@ vnoremap <Del> "_d
 " fix indentation of complete file
 nnoremap <C-i> gg=G<CR>
 
-" keep search matches and line joinging in screen center
+" keep search matches and line joining in screen center
 nnoremap n nzz
 nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
 nnoremap J mzJ`z
 
 " yank to end of line
