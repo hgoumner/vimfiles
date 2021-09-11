@@ -30,6 +30,7 @@ Plug 'lark-parser/vim-lark-syntax'
 Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python'
 Plug 'airblade/vim-gitgutter'
+Plug 'puremourning/vimspector'
 
 call plug#end()
 
@@ -96,7 +97,7 @@ set dir=~/tmp                                  " store swapfiles in tmp director
 set viminfo='10,<10,s10
 
 " tag directory
-set tags=$HOME/vimfiles
+set tags+=tags;$HOME
 
 " set working directory to open file directory
 autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
@@ -114,37 +115,37 @@ set shortmess-=S
 " F key mappings
 "###########################"
 
-" toggle File Explorer
-nnoremap <F1> :NERDTreeToggle<CR>
-" toggle wrap
-nnoremap <silent><expr> <F2> ':windo set wrap! go'.'-+'[&wrap]."=b\r"
-" map split view
-" vertical
-nnoremap <F3> <C-w><C-v><CR>
-" horizontal
-nnoremap <F4> <C-w><C-s><CR>
-" set synchronous scrolling
-nnoremap <F5> :windo set invscrollbind<CR>
-" toggle column highlight
-nnoremap <F6> :set cursorcolumn!<CR>
-" toggle relative line numbers
-nnoremap <F7> :set relativenumber!<CR>
-" window maximizer
-let g:maximizer_default_mapping_key = '<F8>'
-nnoremap <silent><F8> :MaximizerToggle<CR>
-" search word under cursor
-nnoremap <F9> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
-
-" toggle code folding
-inoremap <F10> <C-O>za
-nnoremap <F10> za
-inoremap <F11> <C-O>zM
-nnoremap <F11> zM
-" onoremap <F10> <C-C>za
-" vnoremap <F10> zf"
-
-" edit _vimrc file
-nnoremap <F12> :e $MYVIMRC<CR>
+" " toggle File Explorer
+" nnoremap <F1> :NERDTreeToggle<CR>
+" " toggle wrap
+" nnoremap <silent><expr> <F2> ':windo set wrap! go'.'-+'[&wrap]."=b\r"
+" " map split view
+" " vertical
+" nnoremap <F3> <C-w><C-v><CR>
+" " horizontal
+" nnoremap <F4> <C-w><C-s><CR>
+" " set synchronous scrolling
+" nnoremap <F5> :windo set invscrollbind<CR>
+" " toggle column highlight
+" nnoremap <F6> :set cursorcolumn!<CR>
+" " toggle relative line numbers
+" nnoremap <F7> :set relativenumber!<CR>
+" " window maximizer
+" let g:maximizer_default_mapping_key = '<F8>'
+" nnoremap <silent><F8> :MaximizerToggle<CR>
+" " search word under cursor
+" nnoremap <F9> :vimgrep /<C-r><C-w>/j % <bar> cwindow<cr>
+" 
+" " toggle code folding
+" inoremap <F10> <C-O>za
+" nnoremap <F10> za
+" inoremap <F11> <C-O>zM
+" nnoremap <F11> zM
+" " onoremap <F10> <C-C>za
+" " vnoremap <F10> zf"
+" 
+" " edit _vimrc file
+" nnoremap <F12> :e $MYVIMRC<CR>
 
 "#############################################"
 "############## Plugin mappings ##############"
@@ -267,11 +268,15 @@ let g:tagbar_type_relap5 = {
 "###########################"
 " Ale
 "###########################"
+"
+set omnifunc=ale#completion#OmniFunc
 
-let g:ale_linters = {'python': ['flake8']}
+let g:ale_linters = {'python': ['flake8', 'pylint']}
 
 " show warnings or errors in gutter
 let g:flake8_show_in_gutter=1
+
+let g:ale_completion_enabled=1
 
 " ignore unimportant warnings
 "let g:flake8_ignore="E201,E221,E265,E271,E272,E303,E501,E701,W391"
@@ -281,6 +286,13 @@ let g:flake8_show_in_gutter=1
 "###########################"
 
 let g:foam256_use_own_colors=1
+
+"###########################"
+" Vimspector
+"###########################"
+
+let g:vimspector_enable_mappings = 'HUMAN'
+"packadd! vimspector
 
 "###########################"
 " Personal
