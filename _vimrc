@@ -269,14 +269,10 @@ let g:tagbar_type_relap5 = {
 " Ale
 "###########################"
 "
-set omnifunc=ale#completion#OmniFunc
-
-let g:ale_linters = {'python': ['flake8', 'pylint']}
+let g:ale_linters = {'python': ['flake8']}
 
 " show warnings or errors in gutter
 let g:flake8_show_in_gutter=1
-
-let g:ale_completion_enabled=1
 
 " ignore unimportant warnings
 "let g:flake8_ignore="E201,E221,E265,E271,E272,E303,E501,E701,W391"
