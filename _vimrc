@@ -287,6 +287,11 @@ let g:foam256_use_own_colors=1
 " Vimspector
 "###########################"
 
+if has('win32')
+    set pythonthreedll=C:\\Users\\gou\\Miniconda3\\envs\\py36_32bit\\python36.dll
+    set pythonthreehome=C:\\Users\\gou\\Miniconda3\\envs\\py36_32bit
+endif
+
 let g:vimspector_enable_mappings = 'HUMAN'
 "packadd! vimspector
 
@@ -323,6 +328,8 @@ nnoremap <C-i> gg=G<CR>
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap * *zz
+nnoremap <kMultiply> *zz
+nnoremap <kDivide> #zz
 nnoremap # #zz
 nnoremap J mzJ`z
 
