@@ -60,6 +60,9 @@ let NERDTreeShowBookmarks=1
 
 " Set color scheme
 let g:gruvbox_contrast_dark='hard'
+if has('unix')
+    set bg=dark
+endif
 colorscheme gruvbox
 
 " Set font
