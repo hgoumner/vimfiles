@@ -31,6 +31,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python'
 Plug 'airblade/vim-gitgutter'
 Plug 'puremourning/vimspector'
+Plug 'perost/modelica-vim'
 
 call plug#end()
 
@@ -75,6 +76,9 @@ set wildmenu
 
 " Turn on syntax highlighting
 syntax on
+
+" do not fold on file load
+set nofoldenable
 
 " set encoding to utf8
 set encoding=utf-8
@@ -493,6 +497,11 @@ autocmd BufNewFile,BufRead,BufReadPost *.geo set
 autocmd BufNewFile,BufRead,BufReadPost *.rl5 set
             \ syntax=relap5
             \ filetype=relap5
+
+" ############# Modelica #############
+autocmd BufNewFile,BufRead,BufReadPost *.mo set 
+            \ syntax=modelica
+            \ filetype=modelica
 
 " ############# All files #############
 "autocmd BufReadPre * set nowrap
