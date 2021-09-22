@@ -32,6 +32,7 @@ Plug 'bps/vim-textobj-python'
 Plug 'airblade/vim-gitgutter'
 Plug 'puremourning/vimspector'
 Plug 'perost/modelica-vim'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -58,8 +59,8 @@ source $VIMRUNTIME/menu.vim
 let NERDTreeShowBookmarks=1
 
 " Set color scheme
-colors gruvbox
-set bg=dark
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
 
 " Set font
 set guifont=Cousine:h11
