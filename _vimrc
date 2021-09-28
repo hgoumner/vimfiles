@@ -513,3 +513,4 @@ autocmd BufReadPre * silent! :retab
 autocmd BufReadPre * silent! exec "normal gg=G"
 autocmd BufRead * silent! set encoding=utf-8
 
+let $PAGER=''
