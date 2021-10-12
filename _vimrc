@@ -76,7 +76,10 @@ set cursorline
 set list
 
 " command line completion
+set wildmode=longest,list,full
 set wildmenu
+set wildignore+=*.pyc
+set wildignore+=**/.git/*
 
 " Turn on syntax highlighting
 syntax on
