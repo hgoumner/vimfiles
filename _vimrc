@@ -62,13 +62,13 @@ let NERDTreeShowBookmarks=1
 colorscheme gruvbox
 set background=dark
 let g:gruvbox_contrast_dark='hard'
-if has('gui-running')
+if !has('win32')
     let g:gruvbox_transparent_bg=1
 
     " Workaround for creating transparent bg
     autocmd SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
-            \ |    highlight LineNr     ctermbg=NONE guibg=NONE
-            \ |    highlight SignColumn ctermbg=NONE guibg=NONE
+                  \ |    highlight LineNr     ctermbg=NONE guibg=NONE
+                  \ |    highlight SignColumn ctermbg=NONE guibg=NONE
 endif
 
 " Set font
